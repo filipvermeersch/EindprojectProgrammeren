@@ -13,12 +13,13 @@ namespace Projectwerk.Vermeersch.f.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Leden()
         {
-            ViewBag.Message = "Your application description page.";
 
             return View();
         }
+
+
 
         public ActionResult Contact()
         {
