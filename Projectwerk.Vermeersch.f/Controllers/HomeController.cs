@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Projectwerk.Vermeersch.f.Data;
+using Projectwerk.Vermeersch.f.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,15 +10,18 @@ namespace Projectwerk.Vermeersch.f.Controllers
 {
     public class HomeController : Controller
     {
+        private TriatlonContext db = new TriatlonContext();
+
         public ActionResult Index()
         {
-            return View();
+            List<Sport> sportlijst = db.Sporten.ToList();
+            return View(sportlijst);
         }
 
         public ActionResult Leden()
         {
-
-            return View();
+            var putterslijst = db.Putters.ToList();
+            return View(putterslijst);
         }
 
 
