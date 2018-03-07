@@ -170,7 +170,8 @@ namespace Projectwerk.Vermeersch.f.Migrations
             context.Putters.AddOrUpdate(p => p.Id,
                 new Putter
                 {
-                    Id = 1,                    SexID = 1,
+                    Id = 1,
+                    SexID = 1,
                     RoleID = 3,
                     Naam = "Vermeersch",
                     Voornaam = "Filip",

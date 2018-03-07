@@ -129,6 +129,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KalenderController.cs" />
+    <Compile Include="Controllers\LedenController.cs" />
+    <Compile Include="Controllers\WedstrijdenController.cs" />
     <Compile Include="Data\TriatlonContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -144,6 +147,10 @@
     <Compile Include="Migrations\201802281047476_Wedstrijdlijsten.cs" />
     <Compile Include="Migrations\201802281047476_Wedstrijdlijsten.Designer.cs">
       <DependentUpon>201802281047476_Wedstrijdlijsten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803050841518_ordenen.cs" />
+    <Compile Include="Migrations\201803050841518_ordenen.Designer.cs">
+      <DependentUpon>201803050841518_ordenen.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Afstand.cs" />
@@ -200,7 +207,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Leden.cshtml" />
+    <Content Include="Views\Kalender\Index.cshtml" />
+    <Content Include="Views\Leden\Index.cshtml" />
+    <Content Include="Views\Wedstrijden\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -222,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802281047476_Wedstrijdlijsten.resx">
       <DependentUpon>201802281047476_Wedstrijdlijsten.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803050841518_ordenen.resx">
+      <DependentUpon>201803050841518_ordenen.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

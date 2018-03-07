@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Projectwerk.Vermeersch.f.Models.Wedstrijd>
+
+@{
+    ViewBag.Title = "Kalender";
+}
+
+<div class="well well-sm" style="background:#D41024;color:white;"><h2>Kalender</h2></div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Datum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Plaats)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sport.soortSport)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Afstand.Lengte)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stayer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deelnemers)
+
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Datum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plaats)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sport.soortSport)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Afstand.Lengte)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stayer)
+            </td>
+            <td>
+                @foreach (var deelnemer in item.Deelnemers)
+                {
+                    <p>@deelnemer.VolledigeNaam</p>
+                }
+            </td>
+        </tr>
+    }
+
+</table>

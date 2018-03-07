@@ -28,4 +28,6 @@ textarea {
 #navigatiebalk {
     background-color: black;
 }
+#panelheader {background:#D41024;color:white; font-weight:bold;}
+#custompanel {background-color:black;color:white;}
 
