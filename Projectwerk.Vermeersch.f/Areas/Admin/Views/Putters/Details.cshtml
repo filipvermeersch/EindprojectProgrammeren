@@ -1,0 +1,98 @@
+﻿@model Projectwerk.Vermeersch.f.Models.Putter
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Putter</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Role.Rolenaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role.Rolenaam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sex.Geslacht)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sex.Geslacht)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Naam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Naam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Voornaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voornaam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Geboortedatum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Geboortedatum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gebruikersnaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gebruikersnaam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Woonplaats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Woonplaats)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paswoord)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paswoord)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Licentie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Licentie)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

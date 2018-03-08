@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Projectwerk.Vermeersch.f.Models.Resultaat>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="well well-sm" style="background:blue;color:white;"><h2>Resultaten</h2></div>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Putter.Naam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Wedstrijd.Plaats)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UitslagCategorie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UitslagAlgemeen)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Putter.Naam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Wedstrijd.Plaats)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UitslagCategorie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UitslagAlgemeen)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

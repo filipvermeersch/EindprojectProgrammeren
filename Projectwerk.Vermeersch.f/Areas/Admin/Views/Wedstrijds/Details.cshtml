@@ -1,0 +1,58 @@
+﻿@model Projectwerk.Vermeersch.f.Models.Wedstrijd
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Wedstrijd</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Afstand.Lengte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Afstand.Lengte)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sport.soortSport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sport.soortSport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plaats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plaats)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Datum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Datum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stayer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stayer)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

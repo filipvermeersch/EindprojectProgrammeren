@@ -18,11 +18,11 @@ namespace Projectwerk.Vermeersch.f.Controllers
             return View(sportlijst);
         }
 
-        public ActionResult Leden()
-        {
-            var putterslijst = db.Putters.ToList();
-            return View(putterslijst);
-        }
+        //public ActionResult Leden()
+        //{
+        //    var putterslijst = db.Putters.ToList();
+        //    return View(putterslijst);
+        //}
 
 
 

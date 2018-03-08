@@ -7,13 +7,13 @@ namespace Projectwerk.Vermeersch.f.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ordenen : IMigrationMetadata
+    public sealed partial class opnieuw : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ordenen));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(opnieuw));
         
         string IMigrationMetadata.Id
         {
-            get { return "201803050841518_ordenen"; }
+            get { return "201803071913312_opnieuw"; }
         }
         
         string IMigrationMetadata.Source

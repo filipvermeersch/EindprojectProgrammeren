@@ -4,6 +4,12 @@
     padding-bottom: 20px;
     color:white;
 }
+ body .admin {
+       background-color:white;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    color:black;
+ }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -25,6 +31,13 @@ textarea {
     max-width: 280px;
 }
 #tcpo {color:#D41024; font-size:36px; margin-left:100px; font-weight:bold;}
+#navhome {color:#D41024;}
+#navhome:hover {color:white;}
+
+
+#admin {color:blue; font-size:36px; margin-left:100px; font-weight:bold;}
+#navadmin {color:blue;}
+#navadmin:hover {color:white;}
 #navigatiebalk {
     background-color: black;
 }

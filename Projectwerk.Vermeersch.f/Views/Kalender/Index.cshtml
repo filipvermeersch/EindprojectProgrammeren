@@ -6,30 +6,32 @@
 
 <div class="well well-sm" style="background:#D41024;color:white;"><h2>Kalender</h2></div>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Datum)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Plaats)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sport.soortSport)
-        </th>
+<table class="table table-striped" style="background-color:#EEE; color:black;">
+    <thead style="background-color:#AAA;color:black;">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Datum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plaats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sport.soortSport)
+            </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Afstand.Lengte)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Stayer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Deelnemers)
+            <th>
+                @Html.DisplayNameFor(model => model.Afstand.Lengte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stayer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Deelnemers)
 
 
-        </th>
-    </tr>
+            </th>
+        </tr>
+    </thead>
 
     @foreach (var item in Model)
     {
@@ -38,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.Datum)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Plaats)
+                @Html.DisplayFor(modelItem => item.Plaats )
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Sport.soortSport)
@@ -56,6 +58,7 @@
                     <p>@deelnemer.VolledigeNaam</p>
                 }
             </td>
+
         </tr>
     }
 

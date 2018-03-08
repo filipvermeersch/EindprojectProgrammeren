@@ -128,6 +128,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\PuttersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ResultaatsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\WedstrijdsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KalenderController.cs" />
     <Compile Include="Controllers\LedenController.cs" />
@@ -148,9 +152,17 @@
     <Compile Include="Migrations\201802281047476_Wedstrijdlijsten.Designer.cs">
       <DependentUpon>201802281047476_Wedstrijdlijsten.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803050841518_ordenen.cs" />
-    <Compile Include="Migrations\201803050841518_ordenen.Designer.cs">
-      <DependentUpon>201803050841518_ordenen.cs</DependentUpon>
+    <Compile Include="Migrations\201803071910258_ordenen.cs" />
+    <Compile Include="Migrations\201803071910258_ordenen.Designer.cs">
+      <DependentUpon>201803071910258_ordenen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803071913312_opnieuw.cs" />
+    <Compile Include="Migrations\201803071913312_opnieuw.Designer.cs">
+      <DependentUpon>201803071913312_opnieuw.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803071915423_again.cs" />
+    <Compile Include="Migrations\201803071915423_again.Designer.cs">
+      <DependentUpon>201803071915423_again.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Afstand.cs" />
@@ -182,6 +194,24 @@
     <Content Include="Pics\putterslogo.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Putters\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Putters\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Putters\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Putters\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Putters\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Wedstrijds\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Wedstrijds\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Wedstrijds\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Wedstrijds\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Wedstrijds\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Resultaats\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Resultaats\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Resultaats\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Resultaats\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Resultaats\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -213,6 +243,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -232,8 +263,14 @@
     <EmbeddedResource Include="Migrations\201802281047476_Wedstrijdlijsten.resx">
       <DependentUpon>201802281047476_Wedstrijdlijsten.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803050841518_ordenen.resx">
-      <DependentUpon>201803050841518_ordenen.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803071910258_ordenen.resx">
+      <DependentUpon>201803071910258_ordenen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803071913312_opnieuw.resx">
+      <DependentUpon>201803071913312_opnieuw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803071915423_again.resx">
+      <DependentUpon>201803071915423_again.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

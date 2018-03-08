@@ -14,7 +14,7 @@ namespace Projectwerk.Vermeersch.f.Controllers
         // GET: Leden
         public ActionResult Index()
         {
-            var putterslijst = db.Putters.ToList();
+            var putterslijst = db.Putters.Include("Wedstrijden").Include("Resultaten").ToList();
             return View(putterslijst);
 
         }

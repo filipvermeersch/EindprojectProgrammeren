@@ -6,6 +6,7 @@ namespace Projectwerk.Vermeersch.f.Models
 {
     public class Wedstrijd
     {
+        [Key]
         public int Id { get; set; }
 
         public string Plaats { get; set; }

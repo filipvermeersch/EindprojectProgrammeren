@@ -70,7 +70,7 @@ namespace Projectwerk.Vermeersch.f.Migrations
                 SportId = 2, Stayer = true, Deelnemers = new List<Putter>(), Resultaten = new List<Resultaat>() };
 
             var wedstrijden = new List<Wedstrijd> { wedstrijd1, wedstrijd2, wedstrijd3, wedstrijd4, wedstrijd5 };
-            wedstrijden.ForEach(w => context.Wedstrijden.Add(w));
+            wedstrijden.ForEach(w => context.Wedstrijden.AddOrUpdate(w));
 
 
             context.Resultaten.AddOrUpdate(r => r.Id,
@@ -86,21 +86,14 @@ namespace Projectwerk.Vermeersch.f.Migrations
                  {
                      Id = 2,
                      PutterID = 2,
-                     UitslagAlgemeen = 50,
-                     UitslagCategorie = 2,
+                     UitslagAlgemeen = 30,
+                     UitslagCategorie = 7,
                      WedstrijdId = 1
                  },
-                  new Resultaat
-                  {
-                      Id = 3,
-                      PutterID = 3,
-                      UitslagAlgemeen = 30,
-                      UitslagCategorie = 7,
-                      WedstrijdId = 1
-                  },
+         
                    new Resultaat
                    {
-                       Id = 4,
+                       Id = 3,
                        PutterID = 4,
                        UitslagAlgemeen = 20,
                        UitslagCategorie = 4,
@@ -108,7 +101,7 @@ namespace Projectwerk.Vermeersch.f.Migrations
                    },
                     new Resultaat
                     {
-                        Id = 5,
+                        Id = 4,
                         PutterID = 5,
                         UitslagAlgemeen = 25,
                         UitslagCategorie = 6,
@@ -116,7 +109,7 @@ namespace Projectwerk.Vermeersch.f.Migrations
                     },
                      new Resultaat
                      {
-                         Id = 6,
+                         Id = 5,
                          PutterID = 1,
                          UitslagAlgemeen = 18,
                          UitslagCategorie = 2,
@@ -124,48 +117,40 @@ namespace Projectwerk.Vermeersch.f.Migrations
                      },
                           new Resultaat
                           {
-                              Id = 7,
+                              Id = 6,
                               PutterID = 2,
-                              UitslagAlgemeen = 33,
-                              UitslagCategorie = 1,
-                              WedstrijdId = 3
-                          }, new Resultaat
-                          {
-                              Id = 8,
-                              PutterID = 3,
                               UitslagAlgemeen = 16,
                               UitslagCategorie = 4,
                               WedstrijdId = 3
                           }, new Resultaat
                           {
-                              Id = 9,
+                              Id = 7,
+                              PutterID = 5,
+                              UitslagAlgemeen = 11,
+                              UitslagCategorie = 2,
+                              WedstrijdId = 3
+                          }, new Resultaat
+                          {
+                              Id = 8,
                               PutterID = 1,
                               UitslagAlgemeen = 24,
                               UitslagCategorie = 3,
                               WedstrijdId = 4
                           },new Resultaat
                           {
-                              Id = 10,
+                              Id = 9,
                               PutterID = 2,
                               UitslagAlgemeen = 44,
                               UitslagCategorie = 3,
                               WedstrijdId = 4
                           }, new Resultaat
                           {
-                              Id = 11,
+                              Id = 10,
                               PutterID = 3,
                               UitslagAlgemeen = 43,
                               UitslagCategorie = 6,
                               WedstrijdId = 5
-                          }, new Resultaat
-                          {
-                              Id = 12,
-                              PutterID = 4,
-                              UitslagAlgemeen = 55,
-                              UitslagCategorie = 11,
-                              WedstrijdId = 5
                           }
-
                 );
             context.Putters.AddOrUpdate(p => p.Id,
                 new Putter
@@ -208,7 +193,7 @@ namespace Projectwerk.Vermeersch.f.Migrations
                      Voornaam = "Sjoukje",
                      Licentie = true,
                      Woonplaats = "Brugge",
-                     Wedstrijden = new List<Wedstrijd>() { wedstrijd1, wedstrijd5 },
+                     Wedstrijden = new List<Wedstrijd>() { wedstrijd5 },
                      Geboortedatum = DateTime.Parse("05-10-1987"),
                      Paswoord = "sjoukje",
                      Gebruikersnaam = "sjoukje"
@@ -224,7 +209,7 @@ namespace Projectwerk.Vermeersch.f.Migrations
                          Voornaam = "Dries",
                          Licentie = true,
                          Woonplaats = "Oostkamp",
-                         Wedstrijden = new List<Wedstrijd>() { wedstrijd2, wedstrijd5 },
+                         Wedstrijden = new List<Wedstrijd>() { wedstrijd2 },
                          Geboortedatum = DateTime.Parse("26-02-1977"),
                          Paswoord = "dries",
                          Gebruikersnaam = "dries"
