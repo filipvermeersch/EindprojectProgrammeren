@@ -4,7 +4,6 @@ namespace Projectwerk.Vermeersch.f.Models
 {
     public class Resultaat
     {
-        [Key]
         public int Id { get; set; }
         public int UitslagCategorie { get; set; }
         public int UitslagAlgemeen { get; set; }

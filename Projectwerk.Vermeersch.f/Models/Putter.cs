@@ -6,7 +6,6 @@ namespace Projectwerk.Vermeersch.f.Models
 {
     public class Putter
     {
-        [Key]
         public int Id { get; set; }
         public string Naam { get; set; }
         public string Voornaam { get; set; }

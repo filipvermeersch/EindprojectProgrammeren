@@ -140,29 +140,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201802271143090_InitialCreate.cs" />
-    <Compile Include="Migrations\201802271143090_InitialCreate.Designer.cs">
-      <DependentUpon>201802271143090_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802280955202_startDb.cs" />
-    <Compile Include="Migrations\201802280955202_startDb.Designer.cs">
-      <DependentUpon>201802280955202_startDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802281047476_Wedstrijdlijsten.cs" />
-    <Compile Include="Migrations\201802281047476_Wedstrijdlijsten.Designer.cs">
-      <DependentUpon>201802281047476_Wedstrijdlijsten.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803071910258_ordenen.cs" />
-    <Compile Include="Migrations\201803071910258_ordenen.Designer.cs">
-      <DependentUpon>201803071910258_ordenen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803071913312_opnieuw.cs" />
-    <Compile Include="Migrations\201803071913312_opnieuw.Designer.cs">
-      <DependentUpon>201803071913312_opnieuw.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803071915423_again.cs" />
-    <Compile Include="Migrations\201803071915423_again.Designer.cs">
-      <DependentUpon>201803071915423_again.cs</DependentUpon>
+    <Compile Include="Migrations\201803110543562_InitialCreate.cs" />
+    <Compile Include="Migrations\201803110543562_InitialCreate.Designer.cs">
+      <DependentUpon>201803110543562_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Afstand.cs" />
@@ -254,23 +234,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201802271143090_InitialCreate.resx">
-      <DependentUpon>201802271143090_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802280955202_startDb.resx">
-      <DependentUpon>201802280955202_startDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802281047476_Wedstrijdlijsten.resx">
-      <DependentUpon>201802281047476_Wedstrijdlijsten.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803071910258_ordenen.resx">
-      <DependentUpon>201803071910258_ordenen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803071913312_opnieuw.resx">
-      <DependentUpon>201803071913312_opnieuw.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803071915423_again.resx">
-      <DependentUpon>201803071915423_again.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803110543562_InitialCreate.resx">
+      <DependentUpon>201803110543562_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

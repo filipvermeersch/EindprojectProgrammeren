@@ -20,7 +20,7 @@ namespace Projectwerk.Vermeersch.f.Controllers
                                   where wedstrijd.Datum > DateTime.Now.AddMonths(-3)
 
                                   select wedstrijd;
-            return View(todowedstrijden);
+            return View(wedstrijdlijst);
 
         }
     }

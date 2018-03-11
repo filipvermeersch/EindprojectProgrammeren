@@ -7,13 +7,13 @@ namespace Projectwerk.Vermeersch.f.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class startDb : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(startDb));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201802280955202_startDb"; }
+            get { return "201803110543562_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
