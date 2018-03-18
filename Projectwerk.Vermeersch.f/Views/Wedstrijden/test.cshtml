@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Projectwerk.Vermeersch.f.Models.Test>
+
+@{
+    ViewBag.Title = "test";
+}
+
+<h2>test</h2>
+
+<div id="testdiv">testdiv</div>
+<div id="testtable"></div>
+
+@section scripts
+{
+    <script>
+        var testdata = @Html.Raw(Json.Encode(Model));
+        var mijnnaam = testdata[0].testnaam;
+        $( document ).ready(function() {
+
+            $('#testdiv').html(testdata[1].testnaam);
+
+            var html = "<table>";
+            
+            for (var i = 0; i < testdata.length; i++)
+            {
+                html+="<tr>";
+                html+="<td>"+ testdata[i].testnaam +"</td>";
+                html+="<td>"+testdata[i].testvoornaam +"</td>";
+                html+="<td>"+testdata[i].id +"</td>";
+                html+="</tr>";
+            }
+
+            html+="</table>";
+            $("#testtable").html(html);
+        });
+    </script>
+}

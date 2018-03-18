@@ -44,3 +44,8 @@ textarea {
 #panelheader {background:#D41024;color:white; font-weight:bold;}
 #custompanel {background-color:black;color:white;}
 
+ .table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color:#AAA; color:white;
+ }  
+

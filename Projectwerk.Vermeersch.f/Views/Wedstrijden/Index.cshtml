@@ -1,7 +1,82 @@
-﻿
+﻿@model List<Projectwerk.Vermeersch.f.Viewmodels.WedstrijdViewModel>
+
 @{
     ViewBag.Title = "Index";
+    
 }
 
-<h2>Hier komen de individuele wedstrijden</h2>
+
+<div class="well well-sm" style="background:#D41024;color:white;">
+    <img class="img-rounded" style="height:80px;" src="~/Pics/leden/@Model.First().AfbeeldingsURL" />
+
+    @*<h2 style="display:inline;">Wedstrijdpagina <span style="color:blue;"><b> @Model.VolledigeNaam</b></span></h2>*@
+    <h2 style="display:inline;">Wedstrijdpagina <b> @Model.First().Putternaam</b></h2>
+
+
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-7" style="background-color:bisque;">
+        <table id="wedstrijdtable" border="1" style="width:auto; background-color:#CCC;">
+            <thead style="background-color:#D41024;color:white;">
+                <tr>
+                    <th></th>
+                    <th>Datum </th>
+                    <th>Locatie </th>
+                    <th>Sport </th>
+                    <th>Afstand </th>
+                    <th>Stayer </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="row in wedstrijdlijst">
+                    <td></td>
+                    <td>{{row.Datum}}</td>
+                    <td>{{row.Plaats}}</td>
+                    <td>{{row.Sport}}</td>
+                    <td>{{row.Afstand}}</td>
+                    <td>{{row.Stayer}}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="test" style="color:red;"></div>
+        <button id="testbtn">voeg toe</button>
+    </div>
+
+
+    <div class="col-md-4" style="background-color:yellow;color:red; height:200px; float:right;">
+        <h1>Hier gaan we data toevoegen</h1>
+    </div>
+
+
+</div>
+
+@section scripts
+{
+<script>
+    $(document).ready(function () {
+
+        //$('#test').html('fluppe');
+
+        var wedstrijdlijst = @Html.Raw(Json.Encode(Model));
+
+        //$('#test').html(wedstrijdlijst[0].Plaats);
+
+        var wedstrijdtable = new Vue({
+            el: '#wedstrijdtable',
+            data: { wedstrijdlijst}
+            });
+        $('#testbtn').on('click', function () {
+            wedstrijdlijst.push({"Putternaam":"jaak ","PutterId":11,"Plaats":"stonebridge","Datum":"\/Date(1518908400000)\/",
+                "Afstand":"Half","Sport":"Triatlon","Stayer":false,"AfbeeldingsURL":"1.png"})
+        });
+
+    });
+
+</script>
+}
 
