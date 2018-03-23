@@ -35,8 +35,8 @@ textarea {
 #navhome:hover {color:white;}
 
 
-#admin {color:blue; font-size:36px; margin-left:100px; font-weight:bold;}
-#navadmin {color:blue;}
+#admin {color:#428bca; font-size:36px; margin-left:100px; font-weight:bold;}
+#navadmin {color:#428bca;}
 #navadmin:hover {color:white;}
 #navigatiebalk {
     background-color: black;

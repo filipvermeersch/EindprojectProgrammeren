@@ -7,7 +7,7 @@
 <div class="well well-sm" style="background:#D41024;color:white;"><h2>Kalender</h2></div>
 
 <table class="table table-striped" style="background-color:#EEE; color:black;">
-    <thead style="background-color:#AAA;color:black;">
+    <thead style="background-color:#555;color:white;">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Datum)
@@ -36,7 +36,7 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            <td style="font-weight:bold;">
                 @Html.DisplayFor(modelItem => item.Datum)
             </td>
             <td>

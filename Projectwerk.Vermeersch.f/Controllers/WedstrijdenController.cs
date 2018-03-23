@@ -35,13 +35,63 @@ namespace Projectwerk.Vermeersch.f.Controllers
 
             return View(wedstrijden);
         }
+
+        [HttpGet]
+        public ActionResult AddWedstrijd (int id)
+        {
+            WedstrijdViewModel WVM = new WedstrijdViewModel();
+            WVM.PutterId = id;
+
+            ViewBag.Afstand = new SelectList(db.Afstanden, "Id", "Lengte");
+            ViewBag.Sport = new SelectList(db.Sporten, "Id", "soortSport");
+
+            var plaatsen = from wedstrijd in db.Wedstrijden
+                           orderby wedstrijd.Plaats
+                           select wedstrijd.Plaats;
+            var locaties = plaatsen.Distinct();
+
+            var selectlistLocaties = locaties.Select
+                (x => new SelectListItem() { Value = x, Text = x }).ToList();
+            //ViewBag.Plaats = new SelectList(selectlistLocaties ,"Value","Text");
+            ViewBag.Plaats = selectlistLocaties;
+
+            return PartialView("_AddWedstrijd", WVM);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddWedstrijd(WedstrijdViewModel WVM)
+        {
+            if (ModelState.IsValid)
+            {
+                var wedstrijd = new Wedstrijd();
+                wedstrijd.Datum = WVM.Datum;
+                wedstrijd.Plaats = WVM.Plaats;
+                wedstrijd.Stayer = WVM.Stayer;
+                wedstrijd.AfstandId = int.Parse(WVM.Afstand);
+                wedstrijd.SportId = int.Parse(WVM.Sport);
+                //wedstrijd.AfstandId = db.Afstanden.SingleOrDefault(a => a.Lengte == WVM.Afstand).Id;
+                //wedstrijd.SportId = db.Sporten.SingleOrDefault(s => s.soortSport == WVM.Sport).Id;
+
+                db.Wedstrijden.Add(wedstrijd);
+                db.SaveChanges();
+                return RedirectToAction("Index","Wedstrijden", new { Id = WVM.PutterId });
+
+            }
+            else
+            {
+                return RedirectToAction(WVM.Plaats);
+
+            }
+        }
         // public JsonResult test(int Id)
         //{
         //    var testje = new List<Test>() { new Test { id = 1, testnaam = "vermeersch", testvoornaam = "fluppe" },
         //        new Test { id = 2, testnaam = "hendrickx", testvoornaam = "sven" } };
         //    return Json(testje, JsonRequestBehavior.AllowGet);
 
-        //}
+            //}
 
         public ActionResult test(int Id)
         {

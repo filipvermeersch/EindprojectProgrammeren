@@ -1,9 +1,4 @@
 ﻿using Projectwerk.Vermeersch.f.Data;
-using Projectwerk.Vermeersch.f.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Projectwerk.Vermeersch.f.Controllers
@@ -25,13 +20,5 @@ namespace Projectwerk.Vermeersch.f.Controllers
         //    return View(putterslijst);
         //}
 
-
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

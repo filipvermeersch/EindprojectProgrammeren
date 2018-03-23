@@ -1,26 +1,25 @@
-﻿@model List<Projectwerk.Vermeersch.f.Viewmodels.WedstrijdViewModel>
+﻿
+@model List<Projectwerk.Vermeersch.f.Viewmodels.WedstrijdViewModel>
 
 @{
     ViewBag.Title = "Index";
-    
+
+    AjaxOptions options = new AjaxOptions();
+    options.HttpMethod = "GET";
+    options.UpdateTargetId = "divToevoegen";
+    options.InsertionMode = InsertionMode.Replace;
 }
 
 
 <div class="well well-sm" style="background:#D41024;color:white;">
     <img class="img-rounded" style="height:80px;" src="~/Pics/leden/@Model.First().AfbeeldingsURL" />
-
-    @*<h2 style="display:inline;">Wedstrijdpagina <span style="color:blue;"><b> @Model.VolledigeNaam</b></span></h2>*@
-    <h2 style="display:inline;">Wedstrijdpagina <b> @Model.First().Putternaam</b></h2>
-
-
+    <h2 style="display:inline; margin-left:5%;">Wedstrijdpagina &nbsp; @Model.First().Putternaam</h2>
 </div>
 
-
-
 <div class="row">
-    <div class="col-md-7" style="background-color:bisque;">
-        <table id="wedstrijdtable" border="1" style="width:auto; background-color:#CCC;">
-            <thead style="background-color:#D41024;color:white;">
+    <div class="col-md-7" style="padding:0;">
+        <table id="wedstrijdtable" border="1" class="table table-striped" style="background-color:#EEE; color:black">
+            <thead style="background-color:#555;color:white;">
                 <tr>
                     <th></th>
                     <th>Datum </th>
@@ -28,55 +27,76 @@
                     <th>Sport </th>
                     <th>Afstand </th>
                     <th>Stayer </th>
+                    <th style="display:none">id</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="row in wedstrijdlijst">
-                    <td></td>
+                    <td class="delete">
+                        <a href="#">
+                            <img src="~/Pics/delete.png" alt="Delete" width="20px" />
+                        </a>
+                    </td>
                     <td>{{row.Datum}}</td>
                     <td>{{row.Plaats}}</td>
                     <td>{{row.Sport}}</td>
                     <td>{{row.Afstand}}</td>
                     <td>{{row.Stayer}}</td>
-                    <td></td>
+                    <td style="display:none" id="wedstrijdId">{{row.PutterId}}</td>
+                    <td>test</td>
                 </tr>
             </tbody>
         </table>
         <div id="test" style="color:red;"></div>
-        <button id="testbtn">voeg toe</button>
+        @Ajax.ActionLink("Wedstrijd toevoegen", "AddWedstrijd", new { id = Model.First().PutterId }, options, new { @class = "btn btn-primary"})
+
+        <button id="testbtn">Test</button>
+
     </div>
-
-
-    <div class="col-md-4" style="background-color:yellow;color:red; height:200px; float:right;">
-        <h1>Hier gaan we data toevoegen</h1>
-    </div>
-
-
+    <div  id="divToevoegen"></div>
 </div>
 
 @section scripts
 {
-<script>
-    $(document).ready(function () {
+    <script>
+        $(document).ready(function () {
 
-        //$('#test').html('fluppe');
+            //$('#test').html('fluppe');
 
-        var wedstrijdlijst = @Html.Raw(Json.Encode(Model));
+            var wedstrijdlijst = @Html.Raw(Json.Encode(Model));
+            DateConvert();
 
-        //$('#test').html(wedstrijdlijst[0].Plaats);
+            function DateConvert()
+            {
+                for (var i = 0; i < wedstrijdlijst.length; i++)
+                {
+                    var datum = wedstrijdlijst[i].Datum;
+                    var d =new Date (parseInt(datum.substr(6)));
+                    wedstrijdlijst[i].Datum = d.toLocaleDateString();
+                }
 
-        var wedstrijdtable = new Vue({
-            el: '#wedstrijdtable',
-            data: { wedstrijdlijst}
+            }
+
+            //$(document).on('click', ".delete" , function () {
+            //    $(this).parent().remove();
+            //});
+
+
+            //$('#test').html(day);
+
+            var wedstrijdtable = new Vue({
+                el: '#wedstrijdtable',
+                data: { wedstrijdlijst}
             });
-        $('#testbtn').on('click', function () {
-            wedstrijdlijst.push({"Putternaam":"jaak ","PutterId":11,"Plaats":"stonebridge","Datum":"\/Date(1518908400000)\/",
-                "Afstand":"Half","Sport":"Triatlon","Stayer":false,"AfbeeldingsURL":"1.png"})
+            $('#testbtn').on('click', function () {
+                wedstrijdlijst.push({"Putternaam":"jaak ","PutterId":11,"Plaats":"stonebridge","Datum":"07-4-2018",
+                    "Afstand":"Half","Sport":"Triatlon","Stayer":false,"AfbeeldingsURL":"1.png"})
+                //DateConvert();
+            });
+
         });
 
-    });
-
-</script>
+    </script>
 }
 
