@@ -21,15 +21,19 @@ namespace Projectwerk.Vermeersch.f.Controllers
             var resultaten = putter.Resultaten;
 
             var wedstrijden = new List<WedstrijdViewModel>();
-            foreach ( var wedstrijd in putter.Wedstrijden )
+            foreach (var wedstrijd in putter.Wedstrijden)
             {
                 WedstrijdViewModel WVM = new WedstrijdViewModel();
                 WVM.PutterId = Id;
+                WVM.Id = wedstrijd.Id;
                 WVM.Putternaam = putter.VolledigeNaam;
                 WVM.Plaats = wedstrijd.Plaats;
-                WVM.Datum = wedstrijd.Datum;
+
+
+                WVM.Datum = wedstrijd.Datum ?? DateTime.Now;
                 WVM.Afstand = wedstrijd.Afstand.Lengte;
                 WVM.Sport = wedstrijd.Sport.soortSport;
+                WVM.Stayer = wedstrijd.Stayer;
                 wedstrijden.Add(WVM);
             }
 
@@ -37,7 +41,7 @@ namespace Projectwerk.Vermeersch.f.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddWedstrijd (int id)
+        public ActionResult AddWedstrijd(int id)
         {
             WedstrijdViewModel WVM = new WedstrijdViewModel();
             WVM.PutterId = id;
@@ -71,12 +75,26 @@ namespace Projectwerk.Vermeersch.f.Controllers
                 wedstrijd.Stayer = WVM.Stayer;
                 wedstrijd.AfstandId = int.Parse(WVM.Afstand);
                 wedstrijd.SportId = int.Parse(WVM.Sport);
-                //wedstrijd.AfstandId = db.Afstanden.SingleOrDefault(a => a.Lengte == WVM.Afstand).Id;
-                //wedstrijd.SportId = db.Sporten.SingleOrDefault(s => s.soortSport == WVM.Sport).Id;
 
-                db.Wedstrijden.Add(wedstrijd);
+                var putter = db.Putters.FirstOrDefault(p => p.Id == WVM.PutterId);
+
+                var wed = db.Wedstrijden.Include("Deelnemers").FirstOrDefault(w => w.Datum == wedstrijd.Datum && w.Plaats == wedstrijd.Plaats
+                    && w.SportId == wedstrijd.SportId && w.AfstandId == wedstrijd.AfstandId && w.Stayer == wedstrijd.Stayer);
+
+                if (wed == null)
+                {
+                    db.Wedstrijden.Add(wedstrijd);
+                    putter.Wedstrijden.Add(wedstrijd);
+                }
+                else
+                {
+                    putter.Wedstrijden.Add(wed);
+
+                }
+
                 db.SaveChanges();
-                return RedirectToAction("Index","Wedstrijden", new { Id = WVM.PutterId });
+
+                return RedirectToAction("Index", "Wedstrijden", new { Id = WVM.PutterId });
 
             }
             else
@@ -91,7 +109,30 @@ namespace Projectwerk.Vermeersch.f.Controllers
         //        new Test { id = 2, testnaam = "hendrickx", testvoornaam = "sven" } };
         //    return Json(testje, JsonRequestBehavior.AllowGet);
 
-            //}
+        //}
+
+        public string Verwijder(string PutterId, string Id)
+        {
+            int nummer = Convert.ToInt32(PutterId);
+            int wedstrijdNummer = Convert.ToInt32(Id);
+            var wedstrijd = db.Wedstrijden.FirstOrDefault(w => w.Id == wedstrijdNummer);
+            var putter = db.Putters.FirstOrDefault(p => p.Id == nummer);
+            if (wedstrijd.Deelnemers.Count>1)
+            {
+                putter.Wedstrijden.Remove(wedstrijd);
+
+            }
+            else
+            {
+                db.Wedstrijden.Remove(wedstrijd);
+            }
+            db.SaveChanges();
+            return "Wedstrijd verwijderd !";
+        }
+
+
+
+
 
         public ActionResult test(int Id)
         {

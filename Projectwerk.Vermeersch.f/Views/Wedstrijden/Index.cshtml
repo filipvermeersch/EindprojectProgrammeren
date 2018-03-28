@@ -43,7 +43,7 @@
                     <td>{{row.Sport}}</td>
                     <td>{{row.Afstand}}</td>
                     <td>{{row.Stayer}}</td>
-                    <td style="display:none" id="wedstrijdId">{{row.PutterId}}</td>
+                    <td style="display:none" id="wedstrijdId">{{row.Id}}</td>
                     <td>test</td>
                 </tr>
             </tbody>
@@ -78,17 +78,11 @@
 
             }
 
-            //$(document).on('click', ".delete" , function () {
-            //    $(this).parent().remove();
-            //});
-
-
-            //$('#test').html(day);
-
             var wedstrijdtable = new Vue({
                 el: '#wedstrijdtable',
                 data: { wedstrijdlijst}
             });
+
             $('#testbtn').on('click', function () {
                 wedstrijdlijst.push({"Putternaam":"jaak ","PutterId":11,"Plaats":"stonebridge","Datum":"07-4-2018",
                     "Afstand":"Half","Sport":"Triatlon","Stayer":false,"AfbeeldingsURL":"1.png"})
@@ -97,6 +91,28 @@
 
         });
 
+        
+        $(document).on('click', ".delete" , function () {
+            $(this).parent().remove();
+        });
+
+
+        
+        $(function () {
+            $('.delete').on('click', function () {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Verwijder", "Wedstrijden")',
+                    data: { 'PutterId': '@Model.First().PutterId', 'Id': $(this).siblings('#wedstrijdId').text() },
+                    success: function (data) {
+                        $(this).parent().remove();
+
+                        //alert("Wedstrijd verwijderd !");
+                    }
+                });
+
+            });
+        });
     </script>
 }
 

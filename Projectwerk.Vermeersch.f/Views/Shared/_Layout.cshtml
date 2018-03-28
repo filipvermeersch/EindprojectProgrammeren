@@ -6,7 +6,14 @@
     <title>@ViewBag.Title - Triatlonclub</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+
     <script src="~/Scripts/vue.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" id="navigatiebalk" >
@@ -26,10 +33,14 @@
                     <li>@Html.ActionLink("Leden", "Index", "Leden")</li>
                     @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                     <li>@Html.ActionLink("Kalender", "Index", "Kalender")</li>
-                    <li>@Html.ActionLink("Admin", "Index", "Putters", new { area = "Admin" }, new { @class = "navbar-brand", @id ="navadmin" })</li>
+                    <li>@Html.ActionLink("Admin", "Index", "Putters", new { area = "Admin" }, new {  @id ="navadmin" })</li>
 
                 </ul>
                 <span id="tcpo">Triatlonclub De Putters</span>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="@Url.Action("Login", "Account")">Login <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a></li>
+                    <li><a href="@Url.Action("Logout", "Account")">Logout <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
+                </ul>
 
             </div>
         </div>

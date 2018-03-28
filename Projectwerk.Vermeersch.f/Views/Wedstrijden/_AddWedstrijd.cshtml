@@ -2,7 +2,6 @@
 
 
 <div class="col-md-4" style="background-color:#AAA; float:right; border:solid 5px #555; border-radius:5px;">
-    @*<h2 style="background-color:#D41024; margin:0px 0px 5% 0px; text-align:center;">Wedstrijd toevoegen</h2>*@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -12,44 +11,18 @@
 
         <div class="form-horizontal" style="padding-top:5%;">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.Putternaam, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Putternaam, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Putternaam, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
-
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.PutterId, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.PutterId, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.PutterId, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
-
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.Plaats, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Plaats, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Plaats, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
-
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Plaats, "Locatie", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("Plaats", null, htmlAttributes: new { @class = "form-control" })
-                    @*@Html.DropDownList("LocatieId", null, htmlAttributes: new { @class = "form-control" })*@
                     @Html.ValidationMessageFor(model => model.Plaats, "", new { @class = "text-danger" })
 
                 </div>
             </div>
 
-
             <div class="form-group">
-                @Html.LabelFor(model => model.Datum, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Datum,  htmlAttributes: new { @class = "control-label col-md-2"})
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Datum, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Datum, "", new { @class = "text-danger" })
@@ -73,15 +46,6 @@
                 </div>
             </div>
 
-
-
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.Sport, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Sport, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Sport, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Stayer, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -122,3 +86,7 @@
         });
     
 </script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

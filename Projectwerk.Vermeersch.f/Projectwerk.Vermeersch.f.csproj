@@ -131,6 +131,7 @@
     <Compile Include="Areas\Admin\Controllers\PuttersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ResultaatsController.cs" />
     <Compile Include="Areas\Admin\Controllers\WedstrijdsController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KalenderController.cs" />
     <Compile Include="Controllers\LedenController.cs" />
@@ -153,6 +154,9 @@
     <Compile Include="Models\Test.cs" />
     <Compile Include="Models\Wedstrijd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Viewmodels\ChangePasswordViewModel.cs" />
+    <Compile Include="Viewmodels\ChangeUsernameViewModel.cs" />
+    <Compile Include="Viewmodels\InlogViewModel.cs" />
     <Compile Include="Viewmodels\WedstrijdViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +231,7 @@
     <Content Include="Views\Wedstrijden\Index.cshtml" />
     <Content Include="Views\Wedstrijden\test.cshtml" />
     <Content Include="Views\Wedstrijden\_AddWedstrijd.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
