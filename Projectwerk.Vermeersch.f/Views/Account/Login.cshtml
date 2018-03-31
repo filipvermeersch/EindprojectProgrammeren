@@ -6,6 +6,18 @@
 
 <div class="well well-sm" style="background:#D41024;color:white;"><h2>Login</h2></div>
 
+@*<div id="temp">
+    @Html.Raw(TempData["succesboodschap"])
+</div>
+
+
+@if (!string.IsNullOrWhiteSpace(TempData["succesboodschap"] + ""))
+{
+    <script>
+            $('#temp').slideDown();
+    </script>
+}*@
+
 
 
 @using (Html.BeginForm())
@@ -43,7 +55,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Login" class="btn btn-default" style="background:#D41024;color:white;" />
+                <input type="submit" value="Login" class="btn btn-default" style="background:#428bca;color:white;" />
                 <br /><br />
             </div>
         </div>
@@ -51,18 +63,15 @@
 }
 
 <div>
-    @Html.ActionLink("Wijzig gebruikersnaam", "ChangeUsername", "Account", null, new { @class = "btn btn-default", @style = "background:#BBB;color:#D41024;margin-right:20px;" })
-    @Html.ActionLink("Wijzig paswoord", "ChangePassword", "Account", null, new { @class = "btn btn-default", @style = "background:#BBB;color:#D41024;" })
+    @Html.ActionLink("Wijzig gebruikersnaam", "ChangeUsername", "Account", null, new { @class = "btn btn-default", @style = "background:#555;color:#FFF;margin-right:20px;" })
+    @Html.ActionLink("Wijzig paswoord", "ChangePassword", "Account", null, new { @class = "btn btn-default", @style = "background:#555;color:#FFF;" })
 </div>
 <br /><br />
 
-<div>
-    @Html.ActionLink("Home", "Index", "Home")
-</div>
 
 
-@section Scripts {
+@*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@
 
 

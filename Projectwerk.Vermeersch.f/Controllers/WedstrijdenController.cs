@@ -28,12 +28,14 @@ namespace Projectwerk.Vermeersch.f.Controllers
                 WVM.Id = wedstrijd.Id;
                 WVM.Putternaam = putter.VolledigeNaam;
                 WVM.Plaats = wedstrijd.Plaats;
-
-
                 WVM.Datum = wedstrijd.Datum ?? DateTime.Now;
                 WVM.Afstand = wedstrijd.Afstand.Lengte;
                 WVM.Sport = wedstrijd.Sport.soortSport;
                 WVM.Stayer = wedstrijd.Stayer;
+                if (wedstrijd.Resultaten.Any( r => r.PutterID == Id))
+                {
+                    WVM.Result = true;
+                }
                 wedstrijden.Add(WVM);
             }
 
@@ -45,6 +47,7 @@ namespace Projectwerk.Vermeersch.f.Controllers
         {
             WedstrijdViewModel WVM = new WedstrijdViewModel();
             WVM.PutterId = id;
+        //    WVM.Datum = DateTime.Now;
 
             ViewBag.Afstand = new SelectList(db.Afstanden, "Id", "Lengte");
             ViewBag.Sport = new SelectList(db.Sporten, "Id", "soortSport");

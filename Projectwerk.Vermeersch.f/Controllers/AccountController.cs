@@ -2,6 +2,7 @@
 using Projectwerk.Vermeersch.f.Viewmodels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -63,6 +64,71 @@ namespace Projectwerk.Vermeersch.f.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
+
+
+        public ActionResult ChangePassword()
+        {
+            ChangePasswordViewModel CPVM = new ChangePasswordViewModel();
+            return View(CPVM);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(ChangePasswordViewModel CPVM)
+
+        {
+            if (ModelState.IsValid)
+            {
+                var putter = db.Putters.FirstOrDefault(p => p.Paswoord == CPVM.Paswoord &&
+                p.Gebruikersnaam == CPVM.Gebruikersnaam);
+                putter.Paswoord = CPVM.NieuwPaswoord;
+                db.Entry(putter).State = EntityState.Modified;
+                db.SaveChanges();
+                FormsAuthentication.SetAuthCookie(putter.Gebruikersnaam, true);
+
+                TempData["succesboodschap"] = "Welkom, <b>" + putter.Gebruikersnaam + "</b><br />Je paswoord werd gewijzigd , je bent succesvol ingelogd !";
+                return RedirectToAction("Index", "Home");
+
+
+            }
+            else
+            {
+                return View(CPVM);
+            }
+
+        }
+
+        public ActionResult ChangeUsername()
+        {
+            ChangeUsernameViewModel CUVM = new ChangeUsernameViewModel();
+            return View(CUVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeUsername(ChangeUsernameViewModel CUVM)
+        {
+            if (ModelState.IsValid)
+            {
+                var putter = db.Putters.FirstOrDefault(p => p.Paswoord == CUVM.Paswoord &&
+                p.Gebruikersnaam == CUVM.Gebruikersnaam);
+                putter.Gebruikersnaam = CUVM.NewUsername;
+                db.Entry(putter).State = EntityState.Modified;
+                db.SaveChanges();
+                FormsAuthentication.SetAuthCookie(putter.Gebruikersnaam, true);
+                TempData["succesboodschap"] = "Welkom, <b>" + putter.Gebruikersnaam + "</b><br />Je gebruikersnaam werd gewijzigd , je bent succesvol ingelogd !";
+
+                return RedirectToAction("Index", "Home");
+
+            }
+            else
+            {
+                return View(CUVM);
+            }
+
+        }
+
 
     }
 }
