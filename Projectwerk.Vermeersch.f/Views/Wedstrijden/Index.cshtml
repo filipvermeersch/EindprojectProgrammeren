@@ -38,28 +38,18 @@
                             <img src="~/Pics/delete.png" alt="Delete" width="20" />
                         </a>
                     </td>
-                    <td class="ander">{{row.Datum}}</td>
+                    <td>{{row.Datum}}</td>
                     <td>{{row.Plaats}}</td>
                     <td>{{row.Sport}}</td>
                     <td>{{row.Afstand}}</td>
                     <td>{{row.Stayer}}</td>
-                    @*<td>{{row.Result}}</td>*@
 
                     <td v-if="row.Result">
-                        <button class="result" style="background-color:#000;color:white;">
-                            Bekijk
-                        </button>
+                        <button type="button" id="result" class="btn btn-primary" style="background-color:black;">Bekijk</button>
                     </td>
-                    @*<td class="result" v-else="row.Result"><img src="~/Pics/plus.jpg" alt="Add" width="20" /></td>*@
-                    <td v-else="row.Result">
-                        @*@Ajax.ActionLink("Wedstrijd toevoegen", "AddWedstrijd", new { id = Model.First().PutterId }, options, new { @class = "btn btn-primary" })*@
-
-                        @Ajax.ActionLink("Resultaat toevoegen", "AddResult", "Resultaten",
-                       new { id = Model.First().PutterId},
-                       options, new { @class = "btn btn-primary" })
-
-
-
+                    <td v-else="row.Result" class="addResult">
+                        @*@Ajax.ActionLink("Resultaat toevoegen", "AddResult", "Resultaten", new { id = Model.First().PutterId  }, options, new { @class = "btn btn-primary" })*@
+                        <button type="button" class="btn btn-primary">Resultaat toevoegen</button>
 
                     </td>
                     <td style="display:none" id="wedstrijdId">{{row.Id}}</td>
@@ -68,8 +58,8 @@
         </table>
         <div id="test" style="color:red;"></div>
 
-        @*@Ajax.ActionLink("Resultaat toevoegen", "AddResult", "Resultaten", new { id = Model.First().PutterId , wedstrijdId={ { row.Id} }, options, new { @class = "btn btn-primary" })*@
-        @Ajax.ActionLink("Wedstrijd toevoegen", "AddWedstrijd", new { id = Model.First().PutterId }, options, new { @class = "btn btn-primary" })
+        @Ajax.ActionLink("Wedstrijd toevoegen", "AddWedstrijd", new { id = Model.First().PutterId },
+       options, new { @class = "btn btn-primary" })
 
 
         <button id="testbtn">Test</button>
@@ -163,55 +153,41 @@
 
         });
 
-
-        //$('.result').on('click', function () {$('#test').html('kutmetdikkeperen');      });
-
-
-
-
-        
-
-        //$(function () {
-        //    var infoModal = $('#myModal');
-
-        //    $('.result').on('click', function () {
-
-        //        infoModal.find('.modal-body').html('fluppe');
-        //        infoModal.modal('show');
-
-        //    });
-
-        //});
-
-
-
-        //$(document).on('click', ".ander" , function () {
-        //    $('#test').html('fluppe');
-        //});
-
-
-
-        $(document).on('click', ".delete" , function () {
-            $(this).parent().remove();
-        });
-
-
-
         $(function () {
             $('.delete').on('click', function () {
+                var self = $(this)
                 $.ajax({
                     type: "POST",
                     url: '@Url.Action("Verwijder", "Wedstrijden")',
                     data: { 'PutterId': '@Model.First().PutterId', 'Id': $(this).siblings('#wedstrijdId').text() },
                     success: function (data) {
-                        $(this).parent().remove();
-
+                        self.parent().remove();
                         //alert("Wedstrijd verwijderd !");
                     }
                 });
 
             });
         });
+
+
+
+        $(function () {
+            $('.addResult').on('click', function () {
+             
+
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("AddResult", "Resultaten")',
+                    data: { 'PutterId': '@Model.First().PutterId' , 'Id': $(this).siblings('#wedstrijdId').text() },
+                    success: function (data) {
+                        $('#divToevoegen').html(data);
+                    }
+
+                });
+
+            });
+        });
+
     </script>
 }
 
