@@ -13,10 +13,10 @@ namespace Projectwerk.Vermeersch.f.Viewmodels
         public string soortSport { get; set; }
         public string Plaats { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = "Only integers are allowed")]
+        [Range(1, int.MaxValue, ErrorMessage = "Nie zeveren hé !!")]
         public int UitslagCategorie { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = "Only integers are allowed")]
+        [Range(1, int.MaxValue, ErrorMessage = "Correcte waarden graag !")]
         public int UitslagAlgemeen { get; set; }
 
         public int PutterId { get; set; }

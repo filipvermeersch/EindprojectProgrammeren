@@ -188,6 +188,12 @@
             });
         });
 
+        $(function () {        
+            $(document).ajaxComplete(function () {
+                $.validator.unobtrusive.parse(document);
+            });
+        });
+
     </script>
 }
 

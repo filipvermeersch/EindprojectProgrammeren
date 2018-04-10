@@ -102,7 +102,21 @@ namespace Projectwerk.Vermeersch.f.Controllers
             }
             else
             {
-                return RedirectToAction(WVM.Plaats);
+                ViewBag.Afstand = new SelectList(db.Afstanden, "Id", "Lengte");
+                ViewBag.Sport = new SelectList(db.Sporten, "Id", "soortSport");
+
+                var plaatsen = from wedstrijd in db.Wedstrijden
+                               orderby wedstrijd.Plaats
+                               select wedstrijd.Plaats;
+                var locaties = plaatsen.Distinct();
+
+                var selectlistLocaties = locaties.Select
+                    (x => new SelectListItem() { Value = x, Text = x }).ToList();
+                //ViewBag.Plaats = new SelectList(selectlistLocaties ,"Value","Text");
+                ViewBag.Plaats = selectlistLocaties;
+
+
+                return PartialView("_AddWedstrijd", WVM);
 
             }
         }

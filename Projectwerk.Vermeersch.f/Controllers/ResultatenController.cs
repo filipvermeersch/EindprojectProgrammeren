@@ -52,7 +52,8 @@ namespace Projectwerk.Vermeersch.f.Controllers
                 return RedirectToAction("Index", "Wedstrijden", new { Id = RVM.PutterId });
 
             }
-            return View(RVM);
+            return PartialView("_AddResult", RVM);
+
         }
         public ActionResult Result(string id, string wedstrijdId)
         {
