@@ -17,8 +17,8 @@
 </div>
 
 <div class="row">
-    <div class="col-md-7" style="padding:0;">
-        <table id="wedstrijdtable" border="1" class="table table-striped" style="background-color:#EEE; color:black">
+    <div class="col-md-7" style="padding:0;"  id="wedstrijdtable">
+        <table border="1" class="table table-striped" style="background-color:#EEE; color:black">
             <thead style="background-color:#555;color:white;">
                 <tr>
                     <th></th>
@@ -34,9 +34,7 @@
             <tbody>
                 <tr v-for="row in wedstrijdlijst">
                     <td class="delete">
-                        <a href="#">
                             <img src="~/Pics/delete.png" alt="Delete" width="20" />
-                        </a>
                     </td>
                     <td>{{row.Datum}}</td>
                     <td>{{row.Plaats}}</td>
@@ -44,15 +42,13 @@
                     <td>{{row.Afstand}}</td>
                     <td>{{row.Stayer}}</td>
 
-                    <td v-if="row.Result">
-                        <button type="button" id="result" class="btn btn-primary" style="background-color:black;">Bekijk</button>
+                    <td v-if="row.Result" class="result">
+                        <button type="button" class="btn btn-primary" style="background-color:black;" >Bekijk</button>
                     </td>
                     <td v-else="row.Result" class="addResult">
-                        @*@Ajax.ActionLink("Resultaat toevoegen", "AddResult", "Resultaten", new { id = Model.First().PutterId  }, options, new { @class = "btn btn-primary" })*@
                         <button type="button" class="btn btn-primary">Resultaat toevoegen</button>
-
                     </td>
-                    <td style="display:none" id="wedstrijdId">{{row.Id}}</td>
+                    <td style="display:none"  id="wedstrijdId">{{row.Id}}</td>
                 </tr>
             </tbody>
         </table>
@@ -62,66 +58,67 @@
        options, new { @class = "btn btn-primary" })
 
 
-        <button id="testbtn">Test</button>
-        <button class="result">anderTestje</button>
 
     </div>
     <div id="divToevoegen"></div>
+    <button class="result">anderTestje</button>
+
 </div>
 
 
 
-<!-- Bootstrap Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content" style="background-color:black; color:white ; border:1px solid white;">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-                <img src="~/Pics/putterslogo.jpg" style="height:50px; float:right;" />
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="background-color:black; color:white ; border:1px solid white;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                    <img src="~/Pics/putterslogo.jpg" style="height:50px; float:right;" />
 
-                <h3 style="color:white">Uitslag <span style="color:white;"> @Model.First().Putternaam</span></h3>
-                <h4 class="modal-title" id="myModalLabel"></h4>
-            </div>
-            <div class="modal-body" style="background-color:#D41024;">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" style="background-color:#D41024;color:white;" data-dismiss="modal">Sluiten</button>
+                    <h3 style="color:white">Uitslag <span style="color:white;"> @Model.First().Putternaam</span></h3>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
+                </div>
+                <div class="modal-body" style="background-color:#D41024;">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" style="background-color:#D41024;color:white;" data-dismiss="modal">Sluiten</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
 
 @section scripts
 {
+
     <script>
 
 
-        $(function () {
+
+        function getResult()
+        {
             var infoModal = $('#myModal');
+            var self = $(this)
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Result", "resultaten")',
+                @*data: { 'PutterId': '@Model.First().PutterId', 'Id': $(this).siblings('#wedstrijdId').text() },*@
+                @*data: { 'PutterId': '@Model.First().PutterId', 'Id': $(this).parent().siblings('#wedstrijdId').text() },*@
+                data: { 'PutterId': '@Model.First().PutterId', 'Id': $(this).closest('tr').find('#wedstrijdId').text() },
 
-            $('.result').on('click', function () {
-                //event.preventDefault();
-                @*$.ajax({
-                    type: "POST",
-                    url: '@Url.Action("Result", "Home")',
-                    data: { 'Id': '@Model.Id', 'wedstrijdId': $(this).siblings('#wedstrijdId').text() },
-                    error: function (a, b, c) {
-                        alert(a.statusText);
-                    },
-                    success: function (data) {
-                        infoModal.find('.modal-body').html(data);
-                        infoModal.modal('show');
-                    }
+                error: function (a, b, c) {
+                    alert(a.statusText);
+                },
+                success: function (data) {
+                    infoModal.find('.modal-body').html(data);
+                    infoModal.modal('show');
+                }
 
-                });*@
-                infoModal.modal('show');
             });
-        });
+            infoModal.modal('show');
 
-
+        }
 
 
         $(document).ready(function () {
@@ -140,9 +137,15 @@
 
             }
 
+
+            Vue.component('modal', {
+                template: '#modal-template'
+            })
+
             var wedstrijdtable = new Vue({
                 el: '#wedstrijdtable',
-                data: { wedstrijdlijst}
+                data: { wedstrijdlijst,
+                    showModal: false}
             });
 
             $('#testbtn').on('click', function () {
@@ -173,7 +176,7 @@
 
         $(function () {
             $('.addResult').on('click', function () {
-             
+
 
                 $.ajax({
                     type: "GET",
@@ -188,7 +191,33 @@
             });
         });
 
-        $(function () {        
+
+        $(function () {
+            $('.result').on('click', function () {
+                var infoModal = $('#myModal');
+                var self = $(this)
+
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Result", "resultaten")',
+
+                    data: { 'PutterId': '@Model.First().PutterId' , 'Id': $(this).siblings('#wedstrijdId').text() },
+                    success: function (data) {
+                        infoModal.find('.modal-body').html(data);
+                        infoModal.modal('show');
+                    }
+
+                });
+
+            });
+        });
+
+
+
+
+
+        $(function () {
             $(document).ajaxComplete(function () {
                 $.validator.unobtrusive.parse(document);
             });

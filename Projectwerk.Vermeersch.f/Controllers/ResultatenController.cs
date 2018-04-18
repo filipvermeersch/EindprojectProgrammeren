@@ -55,10 +55,17 @@ namespace Projectwerk.Vermeersch.f.Controllers
             return PartialView("_AddResult", RVM);
 
         }
-        public ActionResult Result(string id, string wedstrijdId)
+
+
+        [HttpPost]
+        public ActionResult Result(string PutterId, string Id)
         {
-            int nummer = Convert.ToInt32(id);
-            int wedstrijdNummer = Convert.ToInt32(wedstrijdId);
+            int nummer = Convert.ToInt32(PutterId);
+            int wedstrijdNummer = Convert.ToInt32(Id);
+            var wedstrijd = db.Wedstrijden.Include("Sport").FirstOrDefault(w => w.Id == wedstrijdNummer);
+            var putter = db.Putters.FirstOrDefault(p => p.Id == nummer);
+
+
 
             var result = db.Resultaten.Include("Wedstrijd").FirstOrDefault(r => r.PutterID == nummer && r.WedstrijdId == wedstrijdNummer);
 
