@@ -6,8 +6,9 @@
 
 <div class="well well-sm" style="background:#D41024;color:white;"><h2>Kalender</h2></div>
 
+
 <table class="table table-striped" style="background-color:#EEE; color:black;">
-    <thead style="background-color:#555;color:white;">
+    <thead style="background-color:#555;color:#428bca;font-size:large;">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Datum)
@@ -32,15 +33,18 @@
             </th>
         </tr>
     </thead>
+</table>
+<div class="div-table-content">
+    <table class="table table-striped" style="background-color:#EEE; color:black;">
 
-    @foreach (var item in Model)
+        @foreach (var item in Model)
     {
         <tr>
             <td style="font-weight:bold;">
                 @Html.DisplayFor(modelItem => item.Datum)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Plaats )
+                @Html.DisplayFor(modelItem => item.Plaats)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Sport.soortSport)
@@ -54,12 +58,11 @@
             </td>
             <td>
                 @foreach (var deelnemer in item.Deelnemers)
-                {
-                    <p>@deelnemer.VolledigeNaam</p>
-                }
+            {
+                <p>@deelnemer.VolledigeNaam</p>
+        }
             </td>
-
         </tr>
-    }
-
-</table>
+}
+    </table>
+    </div>

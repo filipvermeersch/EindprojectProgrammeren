@@ -27,6 +27,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -173,6 +174,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Pics\add.png" />
+    <Content Include="Pics\check.png" />
     <Content Include="Pics\delete.png" />
     <Content Include="Pics\leden\1.png" />
     <Content Include="Pics\leden\10.png" />
@@ -258,7 +260,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Kalender\Index.cshtml" />
-    <Content Include="Views\Leden\Index.cshtml" />
     <Content Include="Views\Wedstrijden\Index.cshtml" />
     <Content Include="Views\Wedstrijden\test.cshtml" />
     <Content Include="Views\Wedstrijden\_AddWedstrijd.cshtml" />
@@ -276,6 +277,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Resultaten\_Result.cshtml" />
+    <Content Include="Views\Leden\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

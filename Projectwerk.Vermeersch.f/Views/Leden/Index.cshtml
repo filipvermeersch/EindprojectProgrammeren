@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Projectwerk.Vermeersch.f.Models.Putter>
+
+
+
+@{
+
+    ViewBag.Title = "Leden";
+
+}
+
+
+
+<div class="well well-sm" style="background:#D41024;color:white;"><h2>Leden</h2></div>
+
+<div style="overflow:auto;height:100vh;">
+
+    @foreach (var p in Model)
+
+    {
+
+        <div class="row" style="background-color:#BBB; border-radius: 10px ">
+
+
+
+
+            <table style="table-layout: fixed; width: 100%;">
+
+                <tr>
+
+                    <td style="padding:1%;">
+
+                        @*<td>*@
+
+                        <img class="img-rounded" src="~/Pics/leden/@p.AfbeeldingsURL" style="max-width:100%; height:auto" />
+
+                    </td>
+
+
+
+                    <td>
+
+
+
+                        <div class="panel panel-default" id="custompanel" style="border-radius: 7px;">
+
+                            <div class="panel-heading" id="panelheader">
+
+                                <h2 class="panel-title">@p.VolledigeNaam</h2>
+
+                            </div>
+
+                            <div class="panel-body" style="background-color:black;">
+
+                                <p><b>Woonplaats : </b>@p.Woonplaats</p>
+
+                                <p> <B>Categorie : </B>@p.Categorie</p>
+
+                                <p> <B>Leeftijd  : </B>@p.Leeftijd</p>
+
+                                <p><b>Aantal wedstrijden : </b><span class="badge" style="background-color:#428bca;">@p.Wedstrijden.Count</span></p>
+
+                                <p><b>Aantal resultaten : </b><span class="badge" style="background-color:#428bca;">@p.Resultaten.Count</span></p>
+
+
+
+                            </div>
+
+                        </div>
+
+
+
+                    </td>
+
+                    <td style="text-align:center;">
+
+                        @Html.ActionLink("Wedstrijden", "Index", "Wedstrijden", new { id = p.Id }, new
+
+                        {
+
+                            @class = "btn btn-primary  btn-lg"
+
+                        })
+
+                        @*@Html.ActionLink("test", "test", "Wedstrijden", new { id = p.Id }, new { @class = "btn btn-primary  btn-lg" })*@
+
+
+
+
+
+                    </td>
+
+
+
+                </tr>
+
+            </table>
+
+
+
+        </div>
+
+        <br />
+
+    }
+
+
+</div>
+

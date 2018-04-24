@@ -33,20 +33,26 @@
             </thead>
             <tbody>
                 <tr v-for="row in wedstrijdlijst">
-                    <td class="delete">
+                    <td class="delete" style="text-align:center; vertical-align:middle;">
                             <img src="~/Pics/delete.png" alt="Delete" width="20" />
                     </td>
                     <td>{{row.Datum}}</td>
                     <td>{{row.Plaats}}</td>
                     <td>{{row.Sport}}</td>
                     <td>{{row.Afstand}}</td>
-                    <td>{{row.Stayer}}</td>
+                    @*<td>{{row.Stayer}}</td>*@
+
+                    <td v-if="row.Stayer"  style="text-align:center; vertical-align:middle;">
+                        <img src="~/Pics/check.png" width="20"/>
+                    </td>
+                    <td v-else="row.Stayer">
+                    </td>
 
                     <td v-if="row.Result" class="result">
                         <button type="button" class="btn btn-primary" style="background-color:black;" >Bekijk</button>
                     </td>
                     <td v-else="row.Result" class="addResult">
-                        <button type="button" class="btn btn-primary">Resultaat toevoegen</button>
+                        <button type="button" class="btn btn-primary">Toevoegen</button>
                     </td>
                     <td style="display:none"  id="wedstrijdId">{{row.Id}}</td>
                 </tr>

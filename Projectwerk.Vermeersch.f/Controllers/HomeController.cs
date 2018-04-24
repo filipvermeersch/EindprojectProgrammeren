@@ -9,16 +9,7 @@ namespace Projectwerk.Vermeersch.f.Controllers
 
         public ActionResult Index()
         {
-            //   List<Sport> sportlijst = db.Sporten.ToList();
-            //  return View(sportlijst);
             return View();
         }
-
-        //public ActionResult Leden()
-        //{
-        //    var putterslijst = db.Putters.ToList();
-        //    return View(putterslijst);
-        //}
-
     }
 }
