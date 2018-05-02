@@ -5,17 +5,26 @@
 }
 
 <div class="well well-sm" style="background:#D41024;color:white;">
-    <h2>Home</h2>
+    <h2>
+        Home
+    </h2>
 </div>
-<div style="height:10%; background-color:yellow;">
-    <div id="temp">
-        @Html.Raw(TempData["succesboodschap"])
-    </div>
-</div>
+
+@*<span id="temp">
+    @Html.Raw(TempData["succesboodschap"])
+</span>*@
+
 
 @if (!string.IsNullOrWhiteSpace(TempData["succesboodschap"] + ""))
 {
-    <script>
-        $('#temp').slideDown();
-    </script>
+    @section scripts
+{
+        <script>
+            $('#temp').fadeTo(1000, 1);
+        </script>
+    }
 }
+
+
+
+

@@ -16,81 +16,84 @@
     <h2 style="display:inline; margin-left:5%;">Wedstrijdpagina &nbsp; @Model.First().Putternaam</h2>
 </div>
 
+
+
 <div class="row">
-    <div class="col-md-7" style="padding:0;"  id="wedstrijdtable">
-        <table border="1" class="table table-striped" style="background-color:#EEE; color:black">
-            <thead style="background-color:#555;color:white;">
-                <tr>
-                    <th></th>
-                    <th>Datum </th>
-                    <th>Locatie </th>
-                    <th>Sport </th>
-                    <th>Afstand </th>
-                    <th>Stayer </th>
-                    <th style="display:none">id</th>
-                    <th>Resultaat</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="row in wedstrijdlijst">
-                    <td class="delete" style="text-align:center; vertical-align:middle;">
-                            <img src="~/Pics/delete.png" alt="Delete" width="20" />
-                    </td>
-                    <td>{{row.Datum}}</td>
-                    <td>{{row.Plaats}}</td>
-                    <td>{{row.Sport}}</td>
-                    <td>{{row.Afstand}}</td>
-                    @*<td>{{row.Stayer}}</td>*@
+    <div class="col-md-7">
+        <div id="wedstrijdtable" style="padding:0;overflow-y:auto;height:60vh;overflow-x:hidden;">
 
-                    <td v-if="row.Stayer"  style="text-align:center; vertical-align:middle;">
-                        <img src="~/Pics/check.png" width="20"/>
-                    </td>
-                    <td v-else="row.Stayer">
-                    </td>
+            @*<table border="1" class="table table-striped" style="background-color:#EEE; color:black; padding-bottom:10px;">*@
 
-                    <td v-if="row.Result" class="result">
-                        <button type="button" class="btn btn-primary" style="background-color:black;" >Bekijk</button>
-                    </td>
-                    <td v-else="row.Result" class="addResult">
-                        <button type="button" class="btn btn-primary">Toevoegen</button>
-                    </td>
-                    <td style="display:none"  id="wedstrijdId">{{row.Id}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <div id="test" style="color:red;"></div>
+                <table border="1" class="table table-striped" style="background-color:#EEE; color:black; margin-bottom:10px;">
+                    <thead style="background-color:#555;color:white;">
+                        <tr>
+                            <th></th>
+                            <th>Datum </th>
+                            <th>Locatie </th>
+                            <th>Sport </th>
+                            <th>Afstand </th>
+                            <th>Stayer </th>
+                            <th style="display:none">id</th>
+                            <th>Resultaat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="row in wedstrijdlijst">
+                            <td class="delete" style="text-align:center; vertical-align:middle;">
+                                <img src="~/Pics/delete.png" alt="Delete" width="20" />
+                            </td>
+                            <td>{{row.Datum}}</td>
+                            <td>{{row.Plaats}}</td>
+                            <td>{{row.Sport}}</td>
+                            <td>{{row.Afstand}}</td>
+                            @*<td>{{row.Stayer}}</td>*@
 
+                            <td v-if="row.Stayer" style="text-align:center; vertical-align:middle;">
+                                <img src="~/Pics/check.png" width="20" />
+                            </td>
+                            <td v-else="row.Stayer"></td>
+
+                            <td v-if="row.Result" class="result">
+                                <button type="button" class="btn btn-primary" style="background-color:black;">Bekijk</button>
+                            </td>
+                            <td v-else="row.Result" class="addResult">
+                                <button type="button" class="btn btn-primary">Toevoegen</button>
+                            </td>
+                            <td style="display:none" id="wedstrijdId">{{row.Id}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
         @Ajax.ActionLink("Wedstrijd toevoegen", "AddWedstrijd", new { id = Model.First().PutterId },
-       options, new { @class = "btn btn-primary" })
-
-
+                options, new { @class = "btn btn-primary" })
 
     </div>
+
+
     <div id="divToevoegen"></div>
-    <button class="result">anderTestje</button>
 
 </div>
 
 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="background-color:black; color:white ; border:1px solid white;">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-                    <img src="~/Pics/putterslogo.jpg" style="height:50px; float:right;" />
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="background-color:black; color:white ; border:1px solid white;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                <img src="~/Pics/putterslogo.jpg" style="height:50px; float:right;" />
 
-                    <h3 style="color:white">Uitslag <span style="color:white;"> @Model.First().Putternaam</span></h3>
-                    <h4 class="modal-title" id="myModalLabel"></h4>
-                </div>
-                <div class="modal-body" style="background-color:#D41024;">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" style="background-color:#D41024;color:white;" data-dismiss="modal">Sluiten</button>
-                </div>
+                <h3 style="color:white">Uitslag <span style="color:white;"> @Model.First().Putternaam</span></h3>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body" style="background-color:#D41024;">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" style="background-color:#D41024;color:white;" data-dismiss="modal">Sluiten</button>
             </div>
         </div>
     </div>
+</div>
 
 
 
@@ -218,10 +221,6 @@
 
             });
         });
-
-
-
-
 
         $(function () {
             $(document).ajaxComplete(function () {

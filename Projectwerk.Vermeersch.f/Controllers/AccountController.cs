@@ -13,6 +13,9 @@ namespace Projectwerk.Vermeersch.f.Controllers
     public class AccountController : Controller
     {
         private TriatlonContext db = new TriatlonContext();
+        private object adm;
+
+
 
         // GET: Account/Login
         public ActionResult Login()
@@ -35,20 +38,25 @@ namespace Projectwerk.Vermeersch.f.Controllers
                 if (putter == null)
                 {
                     ModelState.AddModelError("", "De ingevoerde gebruikersnaam en/of het wachtwoord is ongeldig");
+
                     return View(IVM);
 
                 }
 
-                //else
-                //{
-                //    ModelState.AddModelError("CredentialError", "De ingevoerde gebruikersnaam en/of het wachtwoord is ongeldig");
-                //}
                 else
                 {
+                    
                     FormsAuthentication.SetAuthCookie(putter.Gebruikersnaam, IVM.Onthouden);
 
                     TempData["succesboodschap"] = "Welkom, <b>" + putter.Gebruikersnaam + "</b><br />Je bent succesvol ingelogd";
-                    return RedirectToAction("Index", "Home");
+                    
+                    //if (putter.RoleID == 3)
+                    //{
+                    //    admin.Enabled = true;
+                    //}
+
+                    //return RedirectToAction("Index", "Home");
+                    return View(IVM);
 
                 }
             }
@@ -87,8 +95,9 @@ namespace Projectwerk.Vermeersch.f.Controllers
                 db.SaveChanges();
                 FormsAuthentication.SetAuthCookie(putter.Gebruikersnaam, true);
 
-                TempData["succesboodschap"] = "Welkom, <b>" + putter.Gebruikersnaam + "</b><br />Je paswoord werd gewijzigd , je bent succesvol ingelogd !";
-                return RedirectToAction("Index", "Home");
+                TempData["succesboodschap"] = "Welkom, <b>" + putter.Gebruikersnaam + "</b><br />Je paswoord werd gewijzigd";
+                //return RedirectToAction("Index", "Home");
+                return View(CPVM);
 
 
             }
@@ -117,9 +126,10 @@ namespace Projectwerk.Vermeersch.f.Controllers
                 db.Entry(putter).State = EntityState.Modified;
                 db.SaveChanges();
                 FormsAuthentication.SetAuthCookie(putter.Gebruikersnaam, true);
-                TempData["succesboodschap"] = "Welkom, <b>" + putter.Gebruikersnaam + "</b><br />Je gebruikersnaam werd gewijzigd , je bent succesvol ingelogd !";
+                TempData["succesboodschap"] = "Welkom, <b>" + putter.Gebruikersnaam + "</b><br />Je gebruikersnaam werd gewijzigd";
 
-                return RedirectToAction("Index", "Home");
+                //return RedirectToAction("Index", "Home");
+                return View(CUVM);
 
             }
             else

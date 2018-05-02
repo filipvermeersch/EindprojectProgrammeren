@@ -3,6 +3,7 @@
     padding-top: 50px;
     padding-bottom: 20px;
     color:white;
+    overflow:hidden;
 }
  body .admin {
        background-color:white;
@@ -10,6 +11,8 @@
     padding-bottom: 20px;
     color:black;
  }
+
+ footer {margin-bottom:50px;}
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -42,26 +45,54 @@ textarea {
     background-color: black;
 }
 #panelheader {background:#D41024;color:white; font-weight:bold;}
-#custompanel {background-color:black;color:white;}
+#custompanel {background-color:black;color:white;padding:0;margin:0;}
 
 
- #temp{ margin-top : 20px ; margin-left:auto; margin-right:auto; width : 30%; height: 20%;
-         background-color : #428bca;  padding : 10px; display:none; text-align:center;
-         border-radius:20px; 
+#temp {
+ /*font-size:small;*/
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: 50px;
+    background-color: #428bca;
+    padding: 10px;
+    text-align: center;
+    border-radius: 20px;
+    /*display: none;*/
+    /*visibility:hidden;*/
+    opacity:0;
 }
+
 
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
     background-color: #AAA;
     color: white;
+    text-align: center;
+    vertical-align: middle;
 }
 
-table {
+.table-striped > tbody > tr:nth-child(even) > td,
+.table-striped > tbody > tr:nth-child(even) > th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+.table-scroll {
     table-layout: fixed;
 }
 
 .div-table-content {
-    height: 100vh;
+    height: 60vh;
     overflow-y: auto;
 }
 
+td {
+    text-align:center; vertical-align:middle; 
+}
+th {
+    text-align: center;
+    vertical-align: middle;  
+}

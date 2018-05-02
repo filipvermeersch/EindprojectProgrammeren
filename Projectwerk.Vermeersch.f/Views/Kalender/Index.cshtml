@@ -7,7 +7,8 @@
 <div class="well well-sm" style="background:#D41024;color:white;"><h2>Kalender</h2></div>
 
 
-<table class="table table-striped" style="background-color:#EEE; color:black;">
+
+<table class="table table-striped" style="background-color:#EEE; color:black;table-layout: fixed;">
     <thead style="background-color:#555;color:#428bca;font-size:large;">
         <tr>
             <th>
@@ -35,7 +36,7 @@
     </thead>
 </table>
 <div class="div-table-content">
-    <table class="table table-striped" style="background-color:#EEE; color:black;">
+    <table class="table table-striped table-scroll" style="background-color:#EEE; color:black;">
 
         @foreach (var item in Model)
     {
@@ -53,7 +54,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Afstand.Lengte)
             </td>
-            <td>
+            <td style="text-align:center; vertical-align:middle;">
                 @Html.DisplayFor(modelItem => item.Stayer)
             </td>
             <td>

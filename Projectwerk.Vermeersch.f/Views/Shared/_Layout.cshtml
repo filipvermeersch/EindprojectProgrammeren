@@ -31,15 +31,14 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Leden", "Index", "Leden")</li>
-                    @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                     <li>@Html.ActionLink("Kalender", "Index", "Kalender")</li>
-                    <li>@Html.ActionLink("Admin", "Index", "Putters", new { area = "Admin" }, new {  @id ="navadmin" })</li>
+                    <li id="adm">@Html.ActionLink("Admin", "Index", "Putters", new { area = "Admin" }, new {  @id ="navadmin" })</li>
 
                 </ul>
                 <span id="tcpo">Triatlonclub De Putters</span>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="@Url.Action("Login", "Account")">Login <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a></li>
-                    <li><a href="@Url.Action("Logout", "Account")">Logout <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
+                    <li id="login"><a href="@Url.Action("Login", "Account")">Login <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a></li>
+                    <li id="logout"><a href="@Url.Action("Logout", "Account")">Logout <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
                 </ul>
 
             </div>

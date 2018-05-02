@@ -7,6 +7,22 @@
 
 <div class="well well-sm" style="background:#D41024;color:white;"><h2>Wijzig gebruikersnaam</h2></div>
 
+<div id="temp">
+    @Html.Raw(TempData["succesboodschap"])
+</div>
+
+@if (!string.IsNullOrWhiteSpace(TempData["succesboodschap"] + ""))
+{
+    @section scripts
+{
+        <script>
+            $('#temp').fadeTo(1000, 1);
+            $('#btnUN').prop("disabled", true);
+        </script>
+    }
+}
+
+
 
 @using (Html.BeginForm())
 {
@@ -49,7 +65,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-3 col-md-9">
-                <input type="submit" value="Wijzig" class="btn btn-default" style="background:#D41024;color:white;" />
+                <input type="submit" value="Wijzig" class="btn btn-default" style="background:#D41024;color:white;" id="btnUN"; />
             </div>
         </div>
     </div>
@@ -60,7 +76,7 @@
 </div>
 
 @*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}*@
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@
 
 

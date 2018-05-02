@@ -5,18 +5,22 @@
 }
 
 <div class="well well-sm" style="background:#D41024;color:white;"><h2>Login</h2></div>
-
-@*<div id="temp">
+<div id="temp">
     @Html.Raw(TempData["succesboodschap"])
 </div>
 
-
 @if (!string.IsNullOrWhiteSpace(TempData["succesboodschap"] + ""))
 {
-    <script>
-            $('#temp').slideDown();
-    </script>
-}*@
+    @section scripts
+{
+        <script>
+            $('#temp').fadeTo(1000, 1);
+            $('#btnLogin').prop("disabled", true);
+        </script>
+    }
+}
+
+
 
 
 
@@ -55,7 +59,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Login" class="btn btn-default" style="background:#428bca;color:white;" />
+                <input type="submit" value="Login" class="btn btn-default" style="background:#428bca;color:white;" id="btnLogin" />
                 <br /><br />
             </div>
         </div>
@@ -69,9 +73,5 @@
 <br /><br />
 
 
-
-@*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}*@
 
 
