@@ -90,9 +90,12 @@ textarea {
 }
 
 td {
-    text-align:center; vertical-align:middle; 
+    text-align: center;
+    vertical-align: middle;
+    /*outline: 2px solid yellow;*/
 }
 th {
     text-align: center;
-    vertical-align: middle;  
+    vertical-align: middle;
+    /*outline: 2px solid yellow;*/
 }

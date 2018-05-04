@@ -20,52 +20,80 @@
 
 <div class="row">
     <div class="col-md-7">
-        <div id="wedstrijdtable" style="padding:0;overflow-y:auto;height:60vh;overflow-x:hidden;">
 
-            @*<table border="1" class="table table-striped" style="background-color:#EEE; color:black; padding-bottom:10px;">*@
 
-                <table border="1" class="table table-striped" style="background-color:#EEE; color:black; margin-bottom:10px;">
-                    <thead style="background-color:#555;color:white;">
-                        <tr>
-                            <th></th>
-                            <th>Datum </th>
-                            <th>Locatie </th>
-                            <th>Sport </th>
-                            <th>Afstand </th>
-                            <th>Stayer </th>
-                            <th style="display:none">id</th>
-                            <th>Resultaat</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="row in wedstrijdlijst">
-                            <td class="delete" style="text-align:center; vertical-align:middle;">
-                                <img src="~/Pics/delete.png" alt="Delete" width="20" />
-                            </td>
-                            <td>{{row.Datum}}</td>
-                            <td>{{row.Plaats}}</td>
-                            <td>{{row.Sport}}</td>
-                            <td>{{row.Afstand}}</td>
-                            @*<td>{{row.Stayer}}</td>*@
+        <table class="table table-striped" style="background-color:#EEE; color:black;table-layout: fixed;">
+            <thead style="background-color:#555;color:#428bca;font-size:large;">
+                <tr>
+                    <th></th>
+                    <th>Datum </th>
+                    <th>Locatie </th>
+                    <th>Sport </th>
+                    <th>Afstand </th>
+                    <th>Stayer </th>
+                    <th style="display:none">id</th>
+                    <th>Resultaat</th>
+                </tr>
+            </thead>
+        </table>
 
-                            <td v-if="row.Stayer" style="text-align:center; vertical-align:middle;">
-                                <img src="~/Pics/check.png" width="20" />
-                            </td>
-                            <td v-else="row.Stayer"></td>
 
-                            <td v-if="row.Result" class="result">
-                                <button type="button" class="btn btn-primary" style="background-color:black;">Bekijk</button>
-                            </td>
-                            <td v-else="row.Result" class="addResult">
-                                <button type="button" class="btn btn-primary">Toevoegen</button>
-                            </td>
-                            <td style="display:none" id="wedstrijdId">{{row.Id}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div id="wedstrijdtable" style="padding:0;overflow-y:auto;max-height:50vh;overflow-x:hidden;margin-bottom:20px;">
+
+
+            @*<table border="1" class="table table-striped" style="background-color:#EEE; color:black;margin:0px;">
+                <thead style="background-color:#555;color:white;">
+                    <tr>
+                        <th></th>
+                        <th>Datum </th>
+                        <th>Locatie </th>
+                        <th>Sport </th>
+                        <th>Afstand </th>
+                        <th>Stayer </th>
+                        <th style="display:none">id</th>
+                        <th>Resultaat</th>
+                    </tr>
+                </thead>*@
+
+            <table border="1" class="table table-striped table-scroll" style="background-color:#EEE; color:black;margin:0px;">
+
+
+                <tbody>
+                    <tr v-for="row in wedstrijdlijst">
+                        <td class="delete" style="text-align:center; vertical-align:middle;">
+                            <span v-bind:title="verwijderen">
+
+                                <img src="~/Pics/delete.png" alt="Delete" width="30" />
+                                </span>
+                        </td>
+                        <td>{{row.Datum}}</td>
+                        <td>{{row.Plaats}}</td>
+                        <td>{{row.Sport}}</td>
+                        <td>{{row.Afstand}}</td>
+                        @*<td>{{row.Stayer}}</td>*@
+
+                        <td v-if="row.Stayer" style="text-align:center; vertical-align:middle;">
+                            <img src="~/Pics/check.png" width="20" />
+                        </td>
+                        <td v-else="row.Stayer"></td>
+
+                        <td v-if="row.Result" class="result">
+                            <button type="button" class="btn btn-primary" style="background-color:black;">Bekijk</button>
+                        </td>
+                        <td v-else="row.Result" class="addResult">
+                            @*<button type="button" class="btn btn-primary">Toevoegen</button>*@
+
+                            <span v-bind:title="toevoegen">
+                                <img src="~/Pics/add.png" alt="Add" height="30" />
+                                </span>
+                        </td>
+                        <td style="display:none" id="wedstrijdId">{{row.Id}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         @Ajax.ActionLink("Wedstrijd toevoegen", "AddWedstrijd", new { id = Model.First().PutterId },
-                options, new { @class = "btn btn-primary" })
+                  options, new { @class = "btn btn-primary" })
 
     </div>
 
@@ -101,7 +129,7 @@
 @section scripts
 {
 
-    <script>
+<script>
 
 
 
@@ -132,7 +160,9 @@
 
         $(document).ready(function () {
 
-            var wedstrijdlijst = @Html.Raw(Json.Encode(Model));
+            var lijst = @Html.Raw(Json.Encode(Model));
+            var wedstrijdlijst = lijst.sort(function (obj1, obj2) { return obj1.Datum - obj2.Datum; });
+
             DateConvert();
 
             function DateConvert()
@@ -154,7 +184,9 @@
             var wedstrijdtable = new Vue({
                 el: '#wedstrijdtable',
                 data: { wedstrijdlijst,
-                    showModal: false}
+                    showModal: false,
+                    toevoegen: 'Resultaat toevoegen',
+                    verwijderen: 'Wedstrijd verwijderen'}
             });
 
             $('#testbtn').on('click', function () {
@@ -228,6 +260,6 @@
             });
         });
 
-    </script>
+</script>
 }
 

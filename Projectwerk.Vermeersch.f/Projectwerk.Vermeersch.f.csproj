@@ -186,7 +186,6 @@
     <Content Include="Pics\leden\7.png" />
     <Content Include="Pics\leden\8.png" />
     <Content Include="Pics\leden\9.png" />
-    <Content Include="Pics\plus.jpg" />
     <Content Include="Pics\putterslogo.jpg" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />

@@ -17,7 +17,9 @@ namespace Projectwerk.Vermeersch.f.Controllers
         public ActionResult Index(int Id)
         {
             var putter = db.Putters.Include("Wedstrijden").Include("Resultaten").FirstOrDefault(p => p.Id == Id);
-            var wedstrijdlijst = putter.Wedstrijden;
+
+            var wedstrijdlijst = putter.Wedstrijden.OrderBy(w => w.Datum);
+            //var wedstrijdlijst = putter.Wedstrijden;
             var resultaten = putter.Resultaten;
 
             var wedstrijden = new List<WedstrijdViewModel>();
@@ -38,8 +40,11 @@ namespace Projectwerk.Vermeersch.f.Controllers
                 }
                 wedstrijden.Add(WVM);
             }
-
+            //var orderedWedstrijden = wedstrijden.OrderBy(w => w.Datum);
+            //return View(orderedWedstrijden);
             return View(wedstrijden);
+
+
         }
 
         [HttpGet]
