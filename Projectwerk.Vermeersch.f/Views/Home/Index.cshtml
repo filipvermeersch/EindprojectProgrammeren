@@ -1,5 +1,9 @@
 ﻿@model  IEnumerable<Projectwerk.Vermeersch.f.Models.Sport>
 
+
+
+
+
 @{
     ViewBag.Title = "Home";
 }
@@ -10,17 +14,54 @@
     </h2>
 </div>
 
-@*<span id="temp">
-    @Html.Raw(TempData["succesboodschap"])
-</span>*@
+@*<div class="fadein">*@
+<div id="slideshow">
+    <div>
+        <img src="~/Pics/home/home1.jpg" style="height:70vh;display: block;margin-left: auto;margin-right: auto;">
+    </div>
+    <div>
+        <img src="~/Pics/home/home2.jpg" style="height:70vh; display: block;margin-left: auto;margin-right: auto;">
+    </div>
+    <div>
+        <img src="~/Pics/home/home3.jpg" style="height:70vh;display: block;margin-left: auto;margin-right: auto;">
+    </div>
+    <div>
+        <img src="~/Pics/home/home4.jpg" style="height:70vh;display: block;margin-left: auto;margin-right: auto;">
+    </div>
+    <div>
+        <img src="~/Pics/home/home5.jpg" style="height:70vh;display: block;margin-left: auto;margin-right: auto;">
+    </div>
+    <div>
+        <img src="~/Pics/home/home6.jpg" style="height:70vh;display: block;margin-left: auto;margin-right: auto;">
+    </div>
+    <div>
+        <img src="~/Pics/home/home7.jpg" style="height:70vh;display: block;margin-left: auto;margin-right: auto;">
+    </div>
 
 
+</div>
+@section scripts
+{
+<script>
+    $("#slideshow > div:gt(0)").hide();
+
+    setInterval(function () {
+        $('#slideshow > div:first')
+            .hide()
+            .next()
+            .show()
+            .end()
+            .appendTo('#slideshow');
+    }, 2000);
+
+</script>
+    }
 @if (!string.IsNullOrWhiteSpace(TempData["succesboodschap"] + ""))
 {
     @section scripts
 {
         <script>
-            $('#temp').fadeTo(1000, 1);
+                        $('#temp').fadeTo(1000, 1);
         </script>
     }
 }

@@ -49,11 +49,11 @@ namespace Projectwerk.Vermeersch.f.Controllers
                     FormsAuthentication.SetAuthCookie(putter.Gebruikersnaam, IVM.Onthouden);
 
                     TempData["succesboodschap"] = "Welkom, <b>" + putter.Gebruikersnaam + "</b><br />Je bent succesvol ingelogd";
-                    
-                    //if (putter.RoleID == 3)
-                    //{
-                    //    admin.Enabled = true;
-                    //}
+
+                    if (putter.Role.Rolenaam=="Admin")
+                    {
+                      
+                    }
 
                     //return RedirectToAction("Index", "Home");
                     return View(IVM);

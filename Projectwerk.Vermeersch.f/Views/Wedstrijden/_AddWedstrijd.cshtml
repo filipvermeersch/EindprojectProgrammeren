@@ -9,101 +9,108 @@
         @Html.HiddenFor(m => m.PutterId)
 
 
-    <div class="form-horizontal">
-        <h4 style="background-color:#000;padding:5px;">Wedstrijd toevoegen</h4>
-        <hr />
+        <div class="form-horizontal">
+            <h4 style="background-color:#000;padding:5px;">Wedstrijd toevoegen</h4>
+            <hr />
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Plaats, "Locatie", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Plaats", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Plaats, "", new { @class = "text-danger" })
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.Plaats, "Locatie", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Plaats", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Plaats, "", new { @class = "text-danger" })
 
+                    </div>
+                </div>*@
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Plaats, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Plaats, new { htmlAttributes = new { @class = "form-control" , @id="auto" } })
+                    @Html.ValidationMessageFor(model => model.Plaats, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.Test, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Test, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Test, "", new { @class = "text-danger" })
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Datum, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Datum, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.TextBoxFor(model => model.Datum, new { @class = "form-control datepicker", @value = DateTime.Today })*@
+
+
+                    @Html.ValidationMessageFor(model => model.Datum, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>*@
 
 
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Datum, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Datum, new { htmlAttributes = new { @class = "form-control" } })
-                @*@Html.TextBoxFor(model => model.Datum, new { @class = "form-control datepicker", @value = DateTime.Today })*@
-
-
-                @Html.ValidationMessageFor(model => model.Datum, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Afstand, "Afstand", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Afstand", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Afstand, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Afstand, "Afstand", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Afstand", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Afstand, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sport, "Sport", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Sport", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Sport, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Sport, "Sport", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Sport", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Sport, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Stayer, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Stayer)
+                        @Html.ValidationMessageFor(model => model.Stayer, "", new { @class = "text-danger" })
+                    </div>
+                </div>
             </div>
-        </div>
 
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Stayer, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Stayer)
-                    @Html.ValidationMessageFor(model => model.Stayer, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-primary" />
                 </div>
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </div>
-    </div>
     }
-    <button id="testbtn3">Test</button>
+    @*<button id="testbtn">Testje</button>
+    <div id="testdiv" style="background-color:lightgreen;">testdiv</div>*@
 </div>
 
 
 
 
 <script type="text/javascript">
-    $(document).ready(function () {
+            $(document).ready(function () {
 
-        $('#testbtn2').on('click', function () {
-            $('#test').html('fluppe');
-                        });
+                @*$('#testbtn').on('click', function () {
+                    var locaties = @Html.Raw(Json.Encode(ViewBag.Plaats));
+                    $('#testdiv').html(locaties[2]);
+                });*@
 
-        $('#testbtn3').on('click', function () {
-            wedstrijdtable.wedstrijdlijst.push({
-                "Putternaam": "jaak ", "PutterId": 11, "Plaats": "stonebridge", "Datum": "07-4-2018",
-                "Afstand": "Half", "Sport": "Triatlon", "Stayer": false, "AfbeeldingsURL": "1.png"
-            })
-            //DateConvert();
-        });
+                  $(function() {
+                     var locaties = @Html.Raw(ViewBag.Plaats);
+                     $("#auto").autocomplete({
+                     source: locaties
+                    });
+                  });
 
+                $('#testbtn3').on('click', function () {
+                    wedstrijdtable.wedstrijdlijst.push({
+                        "Putternaam": "jaak ", "PutterId": 11, "Plaats": "stonebridge", "Datum": "07-4-2018",
+                        "Afstand": "Half", "Sport": "Triatlon", "Stayer": false, "AfbeeldingsURL": "1.png"
                     })
+                    //DateConvert();
+                });
+
+
+            })
 </script>
 
-@*@section Scripts {
-
-}*@

@@ -99,3 +99,16 @@ th {
     vertical-align: middle;
     /*outline: 2px solid yellow;*/
 }
+.ui-helper-hidden-accessible {display:none;}
+.ui-autocomplete {background-color:#555; width:10%;}
+.ui-menu-item {
+    list-style-type: none;
+}
+.ui-menu-item:hover {
+    background-color: #428bca;
+    list-style-type: none;
+}
+
+.active {
+    z-index: 99;
+}

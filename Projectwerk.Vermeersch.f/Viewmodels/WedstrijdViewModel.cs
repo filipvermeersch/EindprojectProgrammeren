@@ -14,6 +14,8 @@ namespace Projectwerk.Vermeersch.f.Viewmodels
 
         public int PutterId { get; set; }
 
+        [Required(ErrorMessage = "Gelieve een {0} te kiezen")]
+
         public string Plaats { get; set; }
 
         [Required(ErrorMessage = "Gelieve een {0} te kiezen")]
@@ -24,9 +26,6 @@ namespace Projectwerk.Vermeersch.f.Viewmodels
 
         public DateTime Datum { get; set; }
 
-        //[Required(ErrorMessage = "Gelieve een {0} te kiezen")]
-
-        // public string Test { get; set; }
 
         public string Afstand { get; set; }
 

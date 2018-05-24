@@ -8,20 +8,26 @@
     options.HttpMethod = "GET";
     options.UpdateTargetId = "divToevoegen";
     options.InsertionMode = InsertionMode.Replace;
+   
+
 }
 
 
 <div class="well well-sm" style="background:#D41024;color:white;">
-    <img class="img-rounded" style="height:80px;" src="~/Pics/leden/@Model.First().AfbeeldingsURL" />
-    <h2 style="display:inline; margin-left:5%;">Wedstrijdpagina &nbsp; @Model.First().Putternaam</h2>
+
+    @*<img class="img-rounded" style="height:80px;" src="~/Pics/leden/@Model.First().AfbeeldingsURL" />
+        <h2 style="display:inline; margin-left:5%;">Wedstrijdpagina &nbsp; @Model.First().Putternaam</h2>*@
+
+    <img class="img-rounded" style="height:80px;" src="~/Pics/leden/@ViewBag.URL" />
+    <h2 style="display:inline; margin-left:5%;">Wedstrijdpagina &nbsp; @ViewBag.Naam</h2>
+
+
 </div>
 
 
 
 <div class="row">
     <div class="col-md-7">
-
-
         <table class="table table-striped" style="background-color:#EEE; color:black;table-layout: fixed;">
             <thead style="background-color:#555;color:#428bca;font-size:large;">
                 <tr>
@@ -39,32 +45,13 @@
 
 
         <div id="wedstrijdtable" style="padding:0;overflow-y:auto;max-height:50vh;overflow-x:hidden;margin-bottom:20px;">
-
-
-            @*<table border="1" class="table table-striped" style="background-color:#EEE; color:black;margin:0px;">
-                <thead style="background-color:#555;color:white;">
-                    <tr>
-                        <th></th>
-                        <th>Datum </th>
-                        <th>Locatie </th>
-                        <th>Sport </th>
-                        <th>Afstand </th>
-                        <th>Stayer </th>
-                        <th style="display:none">id</th>
-                        <th>Resultaat</th>
-                    </tr>
-                </thead>*@
-
             <table border="1" class="table table-striped table-scroll" style="background-color:#EEE; color:black;margin:0px;">
-
-
                 <tbody>
                     <tr v-for="row in wedstrijdlijst">
                         <td class="delete" style="text-align:center; vertical-align:middle;">
                             <span v-bind:title="verwijderen">
-
                                 <img src="~/Pics/delete.png" alt="Delete" width="30" />
-                                </span>
+                            </span>
                         </td>
                         <td>{{row.Datum}}</td>
                         <td>{{row.Plaats}}</td>
@@ -81,20 +68,21 @@
                             <button type="button" class="btn btn-primary" style="background-color:black;">Bekijk</button>
                         </td>
                         <td v-else="row.Result" class="addResult">
-                            @*<button type="button" class="btn btn-primary">Toevoegen</button>*@
-
                             <span v-bind:title="toevoegen">
                                 <img src="~/Pics/add.png" alt="Add" height="30" />
-                                </span>
+                            </span>
                         </td>
                         <td style="display:none" id="wedstrijdId">{{row.Id}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        @Ajax.ActionLink("Wedstrijd toevoegen", "AddWedstrijd", new { id = Model.First().PutterId },
-                  options, new { @class = "btn btn-primary" })
 
+        @*@Ajax.ActionLink("Wedstrijd toevoegen", "AddWedstrijd", new { id = Model.First().PutterId },*@
+
+        @Ajax.ActionLink("Wedstrijd toevoegen", "AddWedstrijd", new { id = ViewBag.Id },
+
+ options, new { @class = "btn btn-primary" })
     </div>
 
 
@@ -111,7 +99,9 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
                 <img src="~/Pics/putterslogo.jpg" style="height:50px; float:right;" />
 
-                <h3 style="color:white">Uitslag <span style="color:white;"> @Model.First().Putternaam</span></h3>
+                @*<h3 style="color:white">Uitslag <span style="color:white;"> @Model.First().Putternaam</span></h3>*@
+                <h3 style="color:white">Uitslag <span style="color:white;"> @ViewBag.Naam</span></h3>
+
                 <h4 class="modal-title" id="myModalLabel"></h4>
             </div>
             <div class="modal-body" style="background-color:#D41024;">
@@ -142,7 +132,10 @@
                 url: '@Url.Action("Result", "resultaten")',
                 @*data: { 'PutterId': '@Model.First().PutterId', 'Id': $(this).siblings('#wedstrijdId').text() },*@
                 @*data: { 'PutterId': '@Model.First().PutterId', 'Id': $(this).parent().siblings('#wedstrijdId').text() },*@
-                data: { 'PutterId': '@Model.First().PutterId', 'Id': $(this).closest('tr').find('#wedstrijdId').text() },
+                @*data: { 'PutterId': '@Model.First().PutterId', 'Id': $(this).closest('tr').find('#wedstrijdId').text() },*@
+
+                                data: { 'PutterId': '@ViewBag.Id', 'Id': $(this).closest('tr').find('#wedstrijdId').text() },
+
 
                 error: function (a, b, c) {
                     alert(a.statusText);
@@ -160,8 +153,7 @@
 
         $(document).ready(function () {
 
-            var lijst = @Html.Raw(Json.Encode(Model));
-            var wedstrijdlijst = lijst.sort(function (obj1, obj2) { return obj1.Datum - obj2.Datum; });
+            var wedstrijdlijst = @Html.Raw(Json.Encode(Model));
 
             DateConvert();
 
@@ -203,7 +195,10 @@
                 $.ajax({
                     type: "POST",
                     url: '@Url.Action("Verwijder", "Wedstrijden")',
-                    data: { 'PutterId': '@Model.First().PutterId', 'Id': $(this).siblings('#wedstrijdId').text() },
+                    @*data: { 'PutterId': '@Model.First().PutterId', 'Id': $(this).siblings('#wedstrijdId').text() },*@
+
+                                        data: { 'PutterId': '@ViewBag.Id', 'Id': $(this).siblings('#wedstrijdId').text() },
+
                     success: function (data) {
                         self.parent().remove();
                         //alert("Wedstrijd verwijderd !");
@@ -222,7 +217,10 @@
                 $.ajax({
                     type: "GET",
                     url: '@Url.Action("AddResult", "Resultaten")',
-                    data: { 'PutterId': '@Model.First().PutterId' , 'Id': $(this).siblings('#wedstrijdId').text() },
+                    @*data: { 'PutterId': '@Model.First().PutterId' , 'Id': $(this).siblings('#wedstrijdId').text() },*@
+
+                                        data: { 'PutterId': '@ViewBag.Id' , 'Id': $(this).siblings('#wedstrijdId').text() },
+
                     success: function (data) {
                         $('#divToevoegen').html(data);
                     }
@@ -243,7 +241,10 @@
                     type: "POST",
                     url: '@Url.Action("Result", "resultaten")',
 
-                    data: { 'PutterId': '@Model.First().PutterId' , 'Id': $(this).siblings('#wedstrijdId').text() },
+                    @*data: { 'PutterId': '@Model.First().PutterId' , 'Id': $(this).siblings('#wedstrijdId').text() },*@
+
+                                        data: { 'PutterId': '@ViewBag.Id' , 'Id': $(this).siblings('#wedstrijdId').text() },
+
                     success: function (data) {
                         infoModal.find('.modal-body').html(data);
                         infoModal.modal('show');
