@@ -1,10 +1,7 @@
 ﻿using Projectwerk.Vermeersch.f.Data;
 using Projectwerk.Vermeersch.f.Viewmodels;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -24,6 +21,9 @@ namespace Projectwerk.Vermeersch.f.Controllers
             return View(IVM);
 
         }
+
+        //test
+
         // POST: Account/Login
 
         [HttpPost]
