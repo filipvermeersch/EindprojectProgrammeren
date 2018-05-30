@@ -8,15 +8,13 @@
     options.HttpMethod = "GET";
     options.UpdateTargetId = "divToevoegen";
     options.InsertionMode = InsertionMode.Replace;
-   
+
 
 }
 
 
 <div class="well well-sm" style="background:#D41024;color:white;">
 
-    @*<img class="img-rounded" style="height:80px;" src="~/Pics/leden/@Model.First().AfbeeldingsURL" />
-        <h2 style="display:inline; margin-left:5%;">Wedstrijdpagina &nbsp; @Model.First().Putternaam</h2>*@
 
     <img class="img-rounded" style="height:80px;" src="~/Pics/leden/@ViewBag.URL" />
     <h2 style="display:inline; margin-left:5%;">Wedstrijdpagina &nbsp; @ViewBag.Naam</h2>
@@ -48,11 +46,30 @@
             <table border="1" class="table table-striped table-scroll" style="background-color:#EEE; color:black;margin:0px;">
                 <tbody>
                     <tr v-for="row in wedstrijdlijst">
-                        <td class="delete" style="text-align:center; vertical-align:middle;">
-                            <span v-bind:title="verwijderen">
-                                <img src="~/Pics/delete.png" alt="Delete" width="30" />
-                            </span>
-                        </td>
+
+
+                        @{
+        var userID = Session["UserID"] as string;
+        var id = (ViewBag.Id).ToString();
+        if (id == userID)
+        {
+                    <td class="delete" style="text-align:center; vertical-align:middle;">
+                        <span v-bind:title="verwijderen">
+                            <img src="~/Pics/delete.png" alt="Delete" width="30" />
+                        </span>
+                    </td>
+
+}
+else
+{
+                    <td></td>
+}
+
+                        }
+
+
+
+
                         <td>{{row.Datum}}</td>
                         <td>{{row.Plaats}}</td>
                         <td>{{row.Sport}}</td>
@@ -67,22 +84,49 @@
                         <td v-if="row.Result" class="result">
                             <button type="button" class="btn btn-primary" style="background-color:black;">Bekijk</button>
                         </td>
-                        <td v-else="row.Result" class="addResult">
-                            <span v-bind:title="toevoegen">
-                                <img src="~/Pics/add.png" alt="Add" height="30" />
-                            </span>
-                        </td>
+
+
+
+                        @{
+        if (id == userID)
+        {
+                    <td v-else="row.Result" class="addResult">
+                        <span v-bind:title="toevoegen">
+                            <img src="~/Pics/add.png" alt="Add" height="30" />
+                        </span>
+                    </td>
+
+}
+else
+{
+                    <td v-else="row.Result"></td>
+}
+
+                        }
+
+
+
+
+                        @*<td v-else="row.Result" class="addResult">
+            <span v-bind:title="toevoegen">
+                <img src="~/Pics/add.png" alt="Add" height="30" />
+            </span>
+        </td>*@
                         <td style="display:none" id="wedstrijdId">{{row.Id}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        @*@Ajax.ActionLink("Wedstrijd toevoegen", "AddWedstrijd", new { id = Model.First().PutterId },*@
 
-        @Ajax.ActionLink("Wedstrijd toevoegen", "AddWedstrijd", new { id = ViewBag.Id },
+        @{
+            if (id == userID)
 
- options, new { @class = "btn btn-primary" })
+            {
+                @Ajax.ActionLink("Wedstrijd toevoegen", "AddWedstrijd", new { id = ViewBag.Id }, options, new { @class = "btn btn-primary" });
+            }
+
+        }
     </div>
 
 
@@ -119,7 +163,7 @@
 @section scripts
 {
 
-<script>
+    <script>
 
 
 
@@ -261,6 +305,6 @@
             });
         });
 
-</script>
+    </script>
 }
 

@@ -19,15 +19,6 @@ namespace Projectwerk.Vermeersch.f.Controllers
             var putter = db.Putters.Include("Wedstrijden").Include("Resultaten").FirstOrDefault(p => p.Id == Id);
             var wedstrijdlijst = putter.Wedstrijden.OrderBy(w => w.Datum);
 
-            //if (wedstrijdlijst.Count()==0)
-            //{
-            //    var geenWedstrijden = new List<WedstrijdViewModel>();
-            //    WedstrijdViewModel WVM = new WedstrijdViewModel();
-            //    WVM.PutterId = Id;
-            //    geenWedstrijden.Add(WVM);
-            //    return View(geenWedstrijden);
-
-            //}
             var resultaten = putter.Resultaten;
 
             var wedstrijden= new List<WedstrijdViewModel>();

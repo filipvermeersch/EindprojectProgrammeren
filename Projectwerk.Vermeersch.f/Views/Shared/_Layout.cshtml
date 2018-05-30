@@ -32,7 +32,19 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Leden", "Index", "Leden")</li>
                     <li>@Html.ActionLink("Kalender", "Index", "Kalender")</li>
-                    <li id="adm">@Html.ActionLink("Admin", "Index", "Putters", new { area = "Admin" }, new { @id = "navadmin" })</li>
+
+                    @{
+        var role = Session["Role"] as string;
+        if (role == "Admin")
+        {
+                <li id="adm">@Html.ActionLink("Admin", "Index", "Putters", new { area = "Admin" }, new { @id = "navadmin" })</li>
+
+}
+
+                    }
+
+
+                    @*<li id="adm">@Html.ActionLink("Admin", "Index", "Putters", new { area = "Admin" }, new { @id = "navadmin" })</li>*@
 
                 </ul>
                 <span id="tcpo">Triatlonclub De Putters</span>

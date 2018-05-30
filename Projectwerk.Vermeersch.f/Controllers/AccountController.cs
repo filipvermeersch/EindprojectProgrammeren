@@ -22,7 +22,6 @@ namespace Projectwerk.Vermeersch.f.Controllers
 
         }
 
-        //test
 
         // POST: Account/Login
 
@@ -47,6 +46,9 @@ namespace Projectwerk.Vermeersch.f.Controllers
                 {
                     
                     FormsAuthentication.SetAuthCookie(putter.Gebruikersnaam, IVM.Onthouden);
+
+                    Session["UserID"] = putter.Id.ToString();
+                    Session["Role"] = putter.Role.Rolenaam;
 
                     TempData["succesboodschap"] = "Welkom, <b>" + putter.Gebruikersnaam + "</b><br />Je bent succesvol ingelogd";
 

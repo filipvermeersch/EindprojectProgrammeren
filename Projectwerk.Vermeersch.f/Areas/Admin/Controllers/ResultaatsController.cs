@@ -11,6 +11,7 @@ using Projectwerk.Vermeersch.f.Models;
 
 namespace Projectwerk.Vermeersch.f.Areas.Admin.Controllers
 {
+    [Authorize]
     public class ResultaatsController : Controller
     {
         private TriatlonContext db = new TriatlonContext();
