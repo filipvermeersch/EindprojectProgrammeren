@@ -10,18 +10,14 @@ namespace Projectwerk.Vermeersch.f.Controllers
     public class AccountController : Controller
     {
         private TriatlonContext db = new TriatlonContext();
-        private object adm;
-
-
+        //private object adm;
 
         // GET: Account/Login
         public ActionResult Login()
         {
             InlogViewModel IVM = new InlogViewModel();
             return View(IVM);
-
         }
-
 
         // POST: Account/Login
 

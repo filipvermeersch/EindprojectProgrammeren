@@ -11,7 +11,7 @@ using Projectwerk.Vermeersch.f.Models;
 
 namespace Projectwerk.Vermeersch.f.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Users = "Fluppe")]
     public class PuttersController : Controller
     {
         private TriatlonContext db = new TriatlonContext();

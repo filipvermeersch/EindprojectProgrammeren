@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Projectwerk.Vermeersch.f.Data;
 using Projectwerk.Vermeersch.f.Models;
 
 namespace Projectwerk.Vermeersch.f.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Users ="Fluppe")]
     public class WedstrijdsController : Controller
     {
         private TriatlonContext db = new TriatlonContext();
